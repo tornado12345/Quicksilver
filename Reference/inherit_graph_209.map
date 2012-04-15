@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$df/d8a/interface_q_s_window.html" title="QSWindow" alt="" coords="5,31,93,59"/>
+<area shape="rect" id="node3" href="$dd/d71/interface_q_s_borderless_window.html" title="QSBorderlessWindow" alt="" coords="141,31,293,59"/>
+<area shape="rect" id="node5" href="$d6/d74/interface_q_s_docking_window.html" title="QSDockingWindow" alt="" coords="341,5,477,33"/>
+<area shape="rect" id="node7" href="$d1/d1a/interface_q_s_result_window.html" title="QSResultWindow" alt="" coords="346,57,472,85"/>
+</map>

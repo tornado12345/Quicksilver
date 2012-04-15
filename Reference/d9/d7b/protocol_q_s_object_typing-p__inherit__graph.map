@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$de/d36/interface_q_s_basic_object.html" title="QSBasicObject" alt="" coords="123,83,233,111"/>
+<area shape="rect" id="node5" href="$d6/dce/interface_q_s_collection.html" title="QSCollection" alt="" coords="5,161,104,189"/>
+<area shape="rect" id="node7" href="$d1/dc6/interface_q_s_null_object.html" title="QSNullObject" alt="" coords="128,161,229,189"/>
+<area shape="rect" id="node9" href="$d2/d35/interface_q_s_object.html" title="QSObject" alt="" coords="254,161,332,189"/>
+<area shape="rect" id="node11" href="$db/de2/interface_q_s_action.html" title="QSAction" alt="" coords="141,238,219,266"/>
+<area shape="rect" id="node13" href="$d9/dbb/interface_q_s_command.html" title="QSCommand" alt="" coords="242,238,344,266"/>
+<area shape="rect" id="node15" href="$d5/d69/interface_q_s_proxy_object.html" title="QSProxyObject" alt="" coords="369,238,481,266"/>
+</map>

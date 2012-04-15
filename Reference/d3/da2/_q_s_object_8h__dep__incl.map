@@ -1,0 +1,26 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$da/dd9/_q_s_action_provider_8h.html" title="Code&#45;QuickStepCore/QSActionProvider.h" alt="" coords="564,83,832,111"/>
+<area shape="rect" id="node5" href="$d9/db1/_q_s_core_8h.html" title="Code&#45;QuickStepCore/QSCore.h" alt="" coords="3057,238,3268,266"/>
+<area shape="rect" id="node16" href="$dc/d2d/_q_s_collection_8h.html" title="Code&#45;QuickStepCore/QSCollection.h" alt="" coords="1484,161,1724,189"/>
+<area shape="rect" id="node19" href="$d4/d12/_q_s_global_selection_provider_8h.html" title="Code&#45;QuickStepCore/QSGlobalSelectionProvider.h" alt="" coords="1748,161,2072,189"/>
+<area shape="rect" id="node22" href="$db/d72/_q_s_null_object_8h.html" title="Code&#45;QuickStepCore/QSNullObject.h" alt="" coords="2097,161,2340,189"/>
+<area shape="rect" id="node25" href="$d3/d53/_q_s_obj_c_message_source_8h.html" title="Code&#45;QuickStepCore/QSObjCMessageSource.h" alt="" coords="2364,161,2672,189"/>
+<area shape="rect" id="node29" href="$d5/d0d/_q_s_object___a_e_conversion_8h.html" title="Code&#45;QuickStepCore/QSObject_AEConversion.h" alt="" coords="2697,161,3009,189"/>
+<area shape="rect" id="node32" href="$d7/d32/_q_s_object___drag_8h.html" title="Code&#45;QuickStepCore/QSObject_Drag.h" alt="" coords="3034,161,3291,189"/>
+<area shape="rect" id="node35" href="$dc/dd9/_q_s_object___file_handling_8h.html" title="Code&#45;QuickStepCore/QSObject_FileHandling.h" alt="" coords="3315,161,3617,189"/>
+<area shape="rect" id="node38" href="$de/ddf/_q_s_object___menus_8h.html" title="Code&#45;QuickStepCore/QSObject_Menus.h" alt="" coords="3642,161,3909,189"/>
+<area shape="rect" id="node41" href="$d7/d98/_q_s_object___pasteboard_8h.html" title="Code&#45;QuickStepCore/QSObject_Pasteboard.h" alt="" coords="2910,83,3207,111"/>
+<area shape="rect" id="node44" href="$d3/d81/_q_s_object___property_list_8h.html" title="Code&#45;QuickStepCore/QSObject_PropertyList.h" alt="" coords="3230,83,3529,111"/>
+<area shape="rect" id="node47" href="$d4/d8c/_q_s_object___string_handling_8h.html" title="Code&#45;QuickStepCore/QSObject_StringHandling.h" alt="" coords="3554,83,3869,111"/>
+<area shape="rect" id="node50" href="$d4/d0a/_q_s_object___u_r_l_handling_8h.html" title="Code&#45;QuickStepCore/QSObject_URLHandling.h" alt="" coords="3894,83,4201,111"/>
+<area shape="rect" id="node53" href="$d0/d2e/_q_s_task_8h.html" title="Code&#45;QuickStepCore/QSTask.h" alt="" coords="4226,83,4435,111"/>
+<area shape="rect" id="node56" href="$da/d7f/_q_s_text_proxy_8h.html" title="Code&#45;QuickStepCore/QSTextProxy.h" alt="" coords="4459,83,4697,111"/>
+<area shape="rect" id="node59" href="$d6/d31/_q_s_downloads_8h.html" title="Code&#45;QuickStepCore/QSDownloads.h" alt="" coords="4722,83,4971,111"/>
+<area shape="rect" id="node61" href="$d1/d16/_q_s_catalog_entry_source_8h.html" title="PlugIns&#45;Main/QSCorePlugIn/Code/QSCatalogEntrySource.h" alt="" coords="4995,83,5372,111"/>
+<area shape="rect" id="node63" href="$d8/dd7/_q_s_object_09_color_handling_8h.html" title="PlugIns&#45;Main/QSCorePlugIn/Code/QSObject+ColorHandling.h" alt="" coords="5397,83,5785,111"/>
+<area shape="rect" id="node65" href="$dd/d7f/_q_s_shell_script_run_action_8h.html" title="PlugIns&#45;Main/QSCorePlugIn/Code/QSShellScriptRunAction.h" alt="" coords="5811,83,6193,111"/>
+<area shape="rect" id="node7" href="$d4/df7/_q_s_process_source_8h.html" title="Code&#45;QuickStepCore/QSProcessSource.h" alt="" coords="28,161,300,189"/>
+<area shape="rect" id="node10" href="$d6/df7/_q_s_apple_script_actions_8h.html" title="PlugIns&#45;Main/QSCorePlugIn/Code/QSAppleScriptActions.h" alt="" coords="324,161,693,189"/>
+<area shape="rect" id="node12" href="$dd/dc1/_q_s_object_actions_8h.html" title="PlugIns&#45;Main/QSCorePlugIn/Code/QSObjectActions.h" alt="" coords="719,161,1059,189"/>
+<area shape="rect" id="node14" href="$da/d9d/_q_s_text_source_8h.html" title="PlugIns&#45;Main/QSCorePlugIn/Code/QSTextSource.h" alt="" coords="1084,161,1408,189"/>
+</map>

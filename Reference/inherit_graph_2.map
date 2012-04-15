@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$d8/ded/protocol_q_s_action_provider-p.html" title="\&lt;QSActionProvider\&gt;" alt="" coords="6,239,149,267"/>
+<area shape="rect" id="node3" href="$db/dc3/interface_q_s_action_provider.html" title="QSActionProvider" alt="" coords="198,239,325,267"/>
+<area shape="rect" id="node5" href="$d5/dc2/interface_app_actions.html" title="AppActions" alt="" coords="417,5,506,33"/>
+<area shape="rect" id="node7" href="$d6/db0/interface_clipboard_actions.html" title="ClipboardActions" alt="" coords="400,57,522,85"/>
+<area shape="rect" id="node9" href="$d2/d52/interface_editor_actions.html" title="EditorActions" alt="" coords="411,109,511,137"/>
+<area shape="rect" id="node11" href="$da/d23/interface_f_s_actions.html" title="FSActions" alt="" coords="420,161,502,189"/>
+<area shape="rect" id="node13" href="$d1/dc2/interface_f_s_disk_actions.html" title="FSDiskActions" alt="" coords="407,213,515,241"/>
+<area shape="rect" id="node15" href="$d8/da6/interface_q_s_apple_script_actions.html" title="QSAppleScriptActions" alt="" coords="385,265,538,293"/>
+<area shape="rect" id="node17" href="$d8/d22/interface_q_s_object_actions.html" title="QSObjectActions" alt="" coords="400,317,523,345"/>
+<area shape="rect" id="node19" href="$d2/d98/interface_q_s_process_action_provider.html" title="QSProcessActionProvider" alt="" coords="374,369,549,397"/>
+<area shape="rect" id="node21" href="$d3/d14/interface_q_s_text_actions.html" title="QSTextActions" alt="" coords="407,421,516,449"/>
+<area shape="rect" id="node23" href="$dc/de4/interface_u_r_l_actions.html" title="URLActions" alt="" coords="415,473,507,501"/>
+</map>
