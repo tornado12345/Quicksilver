@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node1" href="$d4/d18/interface_q_s_interface_controller.html" title="QSInterfaceController" alt="" coords="6,31,156,59"/>
-<area shape="rect" id="node3" href="$df/d9d/interface_q_s_command_builder.html" title="QSCommandBuilder" alt="" coords="235,5,378,33"/>
-<area shape="rect" id="node5" href="$d3/d1e/interface_q_s_resizing_interface_controller.html" title="QSResizingInterfaceController" alt="" coords="206,57,407,85"/>
-<area shape="rect" id="node7" href="$db/d65/interface_q_s_bezel_interface_controller.html" title="QSBezelInterfaceController" alt="" coords="459,30,642,58"/>
-<area shape="rect" id="node9" href="$d0/d68/interface_q_s_primer_interface_controller.html" title="QSPrimerInterfaceController" alt="" coords="456,82,645,110"/>
-</map>

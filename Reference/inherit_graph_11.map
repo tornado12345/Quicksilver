@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node1" href="$d0/d17/protocol_q_s_parser-p.html" title="\&lt;QSParser\&gt;" alt="" coords="6,57,101,85"/>
-<area shape="rect" id="node3" href="$dd/d59/interface_q_s_parser.html" title="QSParser" alt="" coords="149,57,229,85"/>
-<area shape="rect" id="node5" href="$d1/d84/interface_q_s_directory_parser.html" title="QSDirectoryParser" alt="" coords="281,5,415,33"/>
-<area shape="rect" id="node7" href="$db/d9a/interface_q_s_h_t_m_l_link_parser.html" title="QSHTMLLinkParser" alt="" coords="278,57,418,85"/>
-<area shape="rect" id="node9" href="$d4/d4b/interface_q_s_text_line_parser.html" title="QSTextLineParser" alt="" coords="283,109,413,137"/>
-</map>
