@@ -1,10 +1,13 @@
 #!/bin/python
+# -*- encoding: utf-8 -*-
 # Quick directory index creator for cheap maven repositories by Darien Hager
 # Inspired by the bash script from http://chkal.blogspot.com/2010/09/maven-repositories-on-github.html
 
 from string import Template
-from time import strftime
+from time import strftime,localtime
 import os, sys
+import re
+from commands import getoutput
 
 # The magic token is used to guard against accidents. This script will not overwrite files that do not contain it.
 # The token must not be split over two lines.
@@ -15,7 +18,7 @@ SELF_PATH = os.path.abspath(sys.argv[0])
 
 # Taken from http://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
 def formatSize(bytes):
-    for x in ['b','k','m','g','t']:
+    for x in ['bytes','KB','MB','GB','TB']:
         if bytes < 1024.0:
             if x != 'b':
                 return "%3.1f%s" % (bytes, x)
@@ -84,7 +87,7 @@ def buildListing(dirs,files,label):
 
     rowTemplate = Template("""
                 <tr>
-                    <td><a href="$link">$name</a></td>
+                    <td><a href="$link">$name</a> <span style="font-size:80%">(Uploaded: $upload)</span></td>
                     <td>$size</td>
                 </tr>
     """)
@@ -98,12 +101,20 @@ def buildListing(dirs,files,label):
             link="./"+bname+"/index.html",
             size=""
         )
-    for f in files:
-        bname = os.path.basename(f)
+    
+    filenameRegex = re.compile(r'Quicksilver[_\s]{1}[Bb]?([0-9]{2})\.([a-zA-Z]{3})')
+    files.sort(key=lambda x: re.search(filenameRegex,x).group(1),reverse=True)
+    for f in files[::]:
+        bname = os.path.basename(f).decode('utf-8')
+        parts = re.search(filenameRegex,bname)
+        # We could perhaps mount the DMG to get the architecture?
+        # arch_details = getoutput('file "%s"' % f)
         rowFragment += rowTemplate.substitute(
-            icon="[FILE]",
-            name=bname,
-            link="./"+bname,
+            name=u''.join([u'Quicksilver ß',parts.group(1),u' (',parts.group(2),u')']).encode('utf-8'),
+            link="./"+bname.replace(u' ',u'%20').encode('utf-8'),
+            upload = strftime("%d %b %Y",localtime(os.path.getmtime(f))),
+            # architcture details
+            # arch = (u'64/32bit' if 'Mach-0 64-bit bundle x86_64' in arch_details else u'32 bit').encode('utf-8'),
             size=formatSize(os.path.getsize(f))
         )        
     html = pageTemplate.substitute(
@@ -112,7 +123,7 @@ def buildListing(dirs,files,label):
         time=strftime("%Y-%m-%d %H:%M:%S"),
         rowdata=rowFragment
         )
-    
+
     return html
 
 
