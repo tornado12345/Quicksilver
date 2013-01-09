@@ -93,25 +93,17 @@ def buildListing(dirs,files,label):
     """)
 
     rowFragment = ""
-    for d in dirs:
-        bname = os.path.basename(d)
-        rowFragment += rowTemplate.substitute(
-            icon="[DIR]",
-            name=bname + "/",
-            link="./"+bname+"/index.html",
-            size=""
-        )
     
     filenameRegex = re.compile(r'Quicksilver[_\s]{1}[Bb]?([0-9]{2})\.([a-zA-Z]{3})')
     files.sort(key=lambda x: re.search(filenameRegex,x).group(1),reverse=True)
-    for f in files[::]:
+    for f in files:
         bname = os.path.basename(f).decode('utf-8')
         parts = re.search(filenameRegex,bname)
         # We could perhaps mount the DMG to get the architecture?
         # arch_details = getoutput('file "%s"' % f)
         rowFragment += rowTemplate.substitute(
             name=u''.join([u'Quicksilver ß',parts.group(1),u' (',parts.group(2),u')']).encode('utf-8'),
-            link="./"+bname.replace(u' ',u'%20').encode('utf-8'),
+            link="./"+f.replace(u' ',u'%20').encode('utf-8'),
             upload = strftime("%d %b %Y",localtime(os.path.getmtime(f))),
             # architcture details
             # arch = (u'64/32bit' if 'Mach-0 64-bit bundle x86_64' in arch_details else u'32 bit').encode('utf-8'),
@@ -170,7 +162,7 @@ if __name__ == "__main__":
         fh.close()
                 
     if(doWrite):
-        print target
+        print "wrote to " + target
         fh = open(target,"w")
         fh.write(html)
         fh.close()
