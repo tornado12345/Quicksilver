@@ -96,19 +96,25 @@ def buildListing(dirs,files,label):
     
     filenameRegex = re.compile(r'Quicksilver[_\s]{1}[Bb]?([0-9]{2})\.([a-zA-Z]{3})')
     files.sort(key=lambda x: re.search(filenameRegex,x).group(1),reverse=True)
+    htmlFile = open('index.html','r').read().decode('utf-8')
+    
     for f in files:
+        escapedName = f.replace(u' ',u'%20')
+        if escapedName in htmlFile:
+            continue
         bname = os.path.basename(f).decode('utf-8')
         parts = re.search(filenameRegex,bname)
         # We could perhaps mount the DMG to get the architecture?
         # arch_details = getoutput('file "%s"' % f)
         rowFragment += rowTemplate.substitute(
             name=u''.join([u'Quicksilver ß',parts.group(1),u' (',parts.group(2),u')']).encode('utf-8'),
-            link="./"+f.replace(u' ',u'%20').encode('utf-8'),
+            link="./"+escapedName.encode('utf-8'),
             upload = strftime("%d %b %Y",localtime(os.path.getmtime(f))),
             # architcture details
             # arch = (u'64/32bit' if 'Mach-0 64-bit bundle x86_64' in arch_details else u'32 bit').encode('utf-8'),
             size=formatSize(os.path.getsize(f))
-        )        
+        )
+    rowFragment += re.search(r"""<table.*?</tr>\s*?(.*?)\s*</table>""",htmlFile,re.DOTALL).group(1).encode('utf-8')
     html = pageTemplate.substitute(
         tok=MAGIC_TOKEN,
         label=label,
