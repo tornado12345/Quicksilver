@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 # Quick directory index creator for cheap maven repositories by Darien Hager
 # Inspired by the bash script from http://chkal.blogspot.com/2010/09/maven-repositories-on-github.html
