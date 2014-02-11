@@ -98,14 +98,24 @@ NSSize QSMaxIconSize;
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
-    if (self = [super init]) {
-        identifier = [coder decodeObjectForKey:kItemID];
-        data = [coder decodeObjectForKey:kData];
-    }
-    return self;
+	self = [self init];
+    
+	[meta setDictionary:[coder decodeObjectForKey:@"meta"]];
+	[data setDictionary:[coder decodeObjectForKey:@"data"]];
+	[self extractMetadata];
+	id dup = [QSLib objectWithIdentifier:[self identifier]];
+	if (dup) return dup;
+	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
+    for (NSMutableDictionary *dict in @[data, meta]) {
+        [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if (![key respondsToSelector:@selector(encodeWithCoder:)] || ![obj respondsToSelector:@selector(encodeWithCoder:)]) {
+                [dict removeObjectForKey:key];
+            }
+        }];
+    }
     [coder encodeObject:data forKey:kData];
     [coder encodeObject:identifier forKey:kItemID];
 }
@@ -837,16 +847,6 @@ NSSize QSMaxIconSize;
 }
 - (void)writeToFile:(NSString *)path {
 	[data writeToFile:path atomically:YES];
-}
-- (id)initWithCoder:(NSCoder *)coder {
-	self = [self init];
-
-	[meta setDictionary:[coder decodeObjectForKey:@"meta"]];
-	[data setDictionary:[coder decodeObjectForKey:@"data"]];
-	[self extractMetadata];
-	id dup = [QSLib objectWithIdentifier:[self identifier]];
-	if (dup) return dup;
-	return self;
 }
 
 - (void)extractMetadata {
