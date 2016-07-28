@@ -12,8 +12,6 @@
 @interface NSApplication (Info)
 - (BOOL)wasLaunchedAtLogin;
 - (NSString *)versionString;
-- (NSDictionary *)processInformation;
-- (NSDictionary *)parentProcessInformation;
 @end
 
 @interface NSApplication (Focus)
