@@ -55,6 +55,7 @@
 	QSInterfaceController *controller = [(QSController *)[NSApp delegate] interfaceController];
 
 	[[controller dSelector] redisplayObjectValue:[dObject resolvedObject]];
+	[[controller dSelector] updateHistory];
 	[controller actionActivate:self];
 
 	return nil;
@@ -197,6 +198,13 @@
 	NSMutableArray *components = [[dObject splitObjects] mutableCopy];
 	QSInterfaceController *controller = [(QSController *)[NSApp delegate] interfaceController];
 	[controller showArray:components];
+	return nil;
+}
+
+- (QSObject *)logObjectToConsole:(QSObject *)dObject
+{
+	NSLog(@"Printing Object\n%@", [dObject name]);
+	NSLog(@"\n%@", [dObject dictionaryRepresentation]);
 	return nil;
 }
 

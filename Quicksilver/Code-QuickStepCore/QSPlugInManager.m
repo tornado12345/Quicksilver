@@ -23,6 +23,11 @@
 #define pPlugInInfo QSApplicationSupportSubPath(@"PlugIns.plist", NO)
 #define MAX_CONCURRENT_DOWNLOADS 2
 
+@interface QSPlugInManager ()
+@property (retain) QSTask *downloadTask;
+@property (retain) QSTask *installTask;
+@end
+
 @implementation QSPlugInManager
 + (id)sharedInstance {
 	static id _sharedInstance;
@@ -58,6 +63,10 @@
 		[plugin setBundle:bundle];
 	} else {
 		plugin = [QSPlugIn plugInWithBundle:bundle];
+		if (!plugin) {
+			NSLog(@"Failed to initialize plugin for bundle %@", bundle);
+			return nil;
+		}
 		[knownPlugIns setObject:plugin forKey:[bundle bundleIdentifier]];
 	}
 	return plugin;
@@ -200,7 +209,11 @@
 																	 delegate:self];
 
 		if (theConnection) {
-			[QSTasks updateTask:@"Retrieving Plugins..." status:@"Updating Plugin Info" progress:0.0];
+			self.downloadTask = [QSTask taskWithIdentifier:@"PluginUpdateInfo"];
+			self.downloadTask.status = NSLocalizedString(@"Updating Plugin Info", @"");
+			self.downloadTask.cancelBlock = ^{
+				[theConnection cancel];
+			};
 		} else {
 			NSLog(@"Problem downloading plugin data. Perhaps an invalid URL");
             receivedData = nil;
@@ -247,11 +260,12 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	[QSTasks updateTask:@"Retrieving Plugins..." status:@"Updating Plugin Info" progress:1.0];
+	self.downloadTask.status = NSLocalizedString(@"Download failed", @"");
+	[self.downloadTask stop];
+	self.downloadTask = nil;
 	receivedData = nil;
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:QSPlugInInfoFailedNotification object:self userInfo:nil];
-	[QSTasks removeTask:@"Retrieving Plugins..."];
 }
 
 - (void)clearOldWebData {
@@ -267,9 +281,15 @@
 
 - (void)loadNewWebData:(NSData *)data {
 	NSString *errorString;
-	NSDictionary *prop = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:&errorString];
+	self.downloadTask.status = NSLocalizedString(@"Updating plugin info", @"");
+	NSError *error = nil;
+	NSDictionary *prop = nil;
+	if (data) prop = [NSPropertyListSerialization propertyListWithData:data
+																   options:NSPropertyListImmutable
+																	format:NULL
+																	 error:&error];
 	if (!prop) {
-		NSLog(@"Could not load new plugins data");
+		NSLog(@"Could not load new plugins data: %@", error);
 		errorCount++;
 	} else {
 		NSLog(@"Downloaded info for %ld plugin%@ ", (long)[(NSArray *)[prop objectForKey:@"plugins"] count], ([(NSArray *)[prop objectForKey:@"plugins"] count] > 1 ? @"s" : @""));
@@ -285,12 +305,12 @@
 		[self willChangeValueForKey:@"knownPlugInsWithWebInfo"];
 		[self didChangeValueForKey:@"knownPlugInsWithWebInfo"];
 	}
-	[QSTasks removeTask:@"Retrieving Plugins..."];
+	[self.downloadTask stop];
+	self.downloadTask = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:QSPlugInInfoLoadedNotification object:knownPlugIns];
 
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	[QSTasks updateTask:@"Retrieving Plugins..." status:@"Updating Plugin Info" progress:1.0];
 	[self loadNewWebData:receivedData];
 	receivedData = nil;
 }
@@ -367,50 +387,70 @@
     if (VERBOSE) NSLog(@"Unmet Dependencies: %@", dependingPlugIns);
 #endif
 	NSMutableArray *array = [NSMutableArray array];
-	NSMutableSet *dependingNames = [NSMutableSet set];
-	foreachkey(ident, plugins, dependingPlugIns) {
-		if ([(NSArray *)plugins count]) {
-			// ignore dependencies for plug-ins that won't load under the current architecture
-			BOOL loadDependencies = NO;
-			for (QSPlugIn *plugin in plugins) {
-				if ([plugin isSupported]) {
-					// if any one of the depending plug-ins is supported, get the prerequisite
-					loadDependencies = YES;
-					break;
-				}
-			}
-			if (loadDependencies) {
-				NSArray *dependencies = [[plugins lastObject] dependencies];
-				NSDictionary *supportingPlugIn = [dependencies objectWithValue:ident forKey:@"id"];
-				if (![[localPlugIns allKeys] containsObject:[supportingPlugIn objectForKey:@"id"]]) {
-					// supporting plug-in is not yet installed
-					[array addObject:supportingPlugIn];
-					[dependingNames addObjectsFromArray:[plugins valueForKey:@"name"]];
-				}
+	NSMutableSet *dependingNamesSet = [NSMutableSet set];
+	for (NSString *ident in dependingPlugIns) {
+		NSArray *plugins = dependingPlugIns[ident];
+
+		if (![plugins count]) continue;
+
+		// ignore dependencies for plug-ins that won't load under the current architecture
+		BOOL loadDependencies = NO;
+		for (QSPlugIn *plugin in plugins) {
+			if ([plugin isSupported]) {
+				// if any one of the depending plug-ins is supported, get the prerequisite
+				loadDependencies = YES;
+				break;
 			}
 		}
+		if (!loadDependencies) continue;
+
+		QSPlugIn *plugin = plugins.lastObject;
+		NSArray *dependencies = [plugin dependencies];
+		NSDictionary *supportingPlugIn = [dependencies objectWithValue:ident forKey:@"id"];
+		if (supportingPlugIn == nil) {
+			NSLog(@"invalid dependency for %@ in plugin %@", ident, plugin.identifier);
+			continue;
+		}
+
+		if (![[localPlugIns allKeys] containsObject:[supportingPlugIn objectForKey:@"id"]]) {
+			// supporting plug-in is not yet installed
+			[array addObject:supportingPlugIn];
+			[dependingNamesSet addObjectsFromArray:[plugins valueForKey:@"name"]];
+		}
 	}
+
 	//	NSLog(@"installing! %@", array);
 	if (![array count]) return;
 
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"QSAlwaysInstallPrerequisites"]) {
 		[self installPlugInsForIdentifiers:[array valueForKey:@"id"] version:nil];
-
-	} else {
-		//[NSApp activateIgnoringOtherApps:YES];
-		NSInteger selection = NSRunInformationalAlertPanel([NSString stringWithFormat:@"Plugin Requirements", nil] ,
-												  @"Using [%@] requires installation of [%@] .", @"Install", @"Disable", @"Always Install Requirements",
-												  [[dependingNames allObjects] componentsJoinedByString:@", "] ,
-												  [[array valueForKey:@"name"] componentsJoinedByString:@", "]);
-		if (selection == 1) {
-			[self installPlugInsForIdentifiers:[array valueForKey:@"id"] version:nil];
-		} else if (selection == -1) {  //Go to web site
-			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"QSAlwaysInstallPrerequisites"];
-			[self installPlugInsForIdentifiers:[array valueForKey:@"id"] version:nil];
-
-		}
+		return;
 	}
 
+	NSString *dependingNames = [[dependingNamesSet allObjects] componentsJoinedByString:@", "];
+	NSString *unmetPluginNames = [[array valueForKey:@"name"] componentsJoinedByString:@", "];
+
+	NSString *message = [NSString stringWithFormat:NSLocalizedString(@"There are missing dependencies: %@\n\nThe following plugins will not work until those plugins are installed: %@", @"Missing dependencies alert - message (depending plugin names, unmet plugin names)"), dependingNames, unmetPluginNames];
+	NSArray *buttons = @[
+						 NSLocalizedString(@"Install", @"Missing dependencies alert - button 1"),
+						 NSLocalizedString(@"Disable", @"Missing dependencies alert - button 2"),
+						 NSLocalizedString(@"Always Install Requirements", @"Missing dependencies alert - button 3")
+						 ];
+
+	[[QSAlertManager defaultManager] beginAlertWithTitle:NSLocalizedString(@"Plugin requirements", @"Missing dependencies alert - title")
+												 message:message
+												 buttons:buttons
+												   style:NSAlertStyleWarning
+												onWindow:nil
+									   completionHandler:^(QSAlertResponse response) {
+										   if (response == QSAlertResponseCancel) return;
+
+										   if (response == QSAlertResponseThird) {
+											   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"QSAlwaysInstallPrerequisites"];
+										   }
+
+										   [self installPlugInsForIdentifiers:[array valueForKey:@"id"] version:nil];
+									   }];
 }
 
 - (void)checkForObsoletes:(QSPlugIn *)plugin
@@ -736,7 +776,13 @@
 		[[NSWorkspace sharedWorkspace] noteFileSystemChanged:[path stringByDeletingLastPathComponent]];
 		return [manager contentsOfDirectoryAtPath:tempDirectory error:nil];
 	} else {
-		NSRunInformationalAlertPanel(@"Failed to Extract Plugin", @"There was a problem extracting the QSPkg.\nThe file is most likely corrupt.", nil, nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.alertStyle = NSAlertStyleInformational;
+		alert.messageText = NSLocalizedString(@"Failed to Extract Plugin", @"Plugin extraction failed - title");
+		alert.informativeText = NSLocalizedString(@"There was a problem extracting the QSPkg.\nThe file is most likely corrupt.", @"Plugin extraction failed - message");
+		[alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+
+		[[QSAlertManager defaultManager] beginAlert:alert onWindow:nil completionHandler:nil];
 		return nil;
 	}
 
@@ -800,18 +846,25 @@
 - (NSMutableSet *)updatedPlugIns { return updatedPlugIns;  }
 
 - (void)updateDownloadCount {
-	if (![queuedDownloads count]) {
+	NSUInteger dlCount = [queuedDownloads count];
+	if (!dlCount) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"QSPlugInUpdatesFinished" object:self];
 		[self setInstallStatus:nil];
-		[[QSTaskController sharedInstance] removeTask:@"QSPlugInInstalling"];
+		self.installTask.status = NSLocalizedString(@"Installation complete", @"");
+		self.installTask.showProgress = NO;
+		[self.installTask stop];
 
 		[self setIsInstalling:NO];
 	} else {
-		NSString *status = [NSString stringWithFormat:@"Installing %ld Plugin%@", (long)[queuedDownloads count], ([queuedDownloads count] > 1 ? @"s" : @"") ];
-		//NSString *status = [NSString stringWithFormat:@"Installing %@ (%d of %d) ", [[self currentDownload] name] , [queuedDownloads count] , downloadsCount];
+		NSString *status = nil;
+		if (dlCount > 1) {
+			status = [NSString stringWithFormat:NSLocalizedString(@"Installing %ld Plugins", @""), dlCount];
+		} else {
+			status = NSLocalizedString(@"Installing Plugin", @"");
+		}
 		[self setInstallStatus:status];
-		//[self setInstallProgress:[self downloadProgress]];
-		[[QSTaskController sharedInstance] updateTask:@"QSPlugInInstalling" status:status progress:-1];
+		self.installTask = [QSTask taskWithIdentifier:@"QSPlugInInstallation"];
+		self.installTask.status = status;
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"QSUpdateControllerStatusChanged" object:self];
@@ -929,9 +982,7 @@
 	}
 	
 	if ([queuedDownloads count]) {
-		NSString *status = [NSString stringWithFormat:@"Installing %lu Plugin%@", (unsigned long)[queuedDownloads count], ([queuedDownloads count] > 1 ? @"s" : @"")];
-		[[QSTaskController sharedInstance] updateTask:@"QSPlugInInstalling" status:status progress:-1];
-		[self setInstallStatus:status];
+		[self updateDownloadCount];
 		[self setIsInstalling:YES];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"QSUpdateControllerStatusChanged" object:self];
 		[self performSelectorOnMainThread:@selector(startDownloadQueue) withObject:nil waitUntilDone:YES];
@@ -1044,7 +1095,7 @@
     if ([error code] != -1009) {
         QSShowNotifierWithAttributes([NSDictionary dictionaryWithObjectsAndKeys:@"Download Failed",QSNotifierTitle,@"Plugin Download Failed",QSNotifierText,[QSResourceManager imageNamed:kQSBundleID],QSNotifierIcon,nil]);
     }
-    [[QSTaskController sharedInstance] removeTask:@"QSPlugInInstalling"];
+	self.installTask.status = NSLocalizedString(@"Plugin download failed", @"");
     
     [queuedDownloads removeObject:download];
     [activeDownloads removeObject:download];

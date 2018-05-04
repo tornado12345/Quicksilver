@@ -28,15 +28,30 @@ NSString *identifierForPaths(NSArray *paths) {
 	return [paths componentsJoinedByString:@" "];
 }
 
-NSArray *recentDocumentsForBundle(NSString *bundleIdentifier) {
+NSArray *QSGetRecentDocumentsForBundle(NSString *bundleIdentifier) {
     if (bundleIdentifier == nil) {
 		return nil;
 	}
 
     NSMutableArray *documentsArray = [NSMutableArray arrayWithCapacity:0];
 	NSURL *url;
-	if ([NSApplication isElCapitan]) {
-		NSString *sflPath = [NSString stringWithFormat:pSharedFileListPathTemplate, bundleIdentifier];
+	if ([NSApplication isHighSierra]) {
+		NSString *sflPath = [NSString stringWithFormat:pSharedFileListPathTemplate, bundleIdentifier, @"sfl2"];
+		NSString *sflStandardized = [sflPath stringByStandardizingPath];
+		if ([[NSFileManager defaultManager] fileExistsAtPath:sflStandardized isDirectory:nil]) {
+			NSDictionary *sflData = [NSKeyedUnarchiver unarchiveObjectWithFile:sflStandardized];
+			for (NSDictionary *item in sflData[@"items"]) {
+				NSData *bookmarkData = item[@"Bookmark"];
+				url = [NSURL URLByResolvingBookmarkData:bookmarkData options:NSURLBookmarkResolutionWithoutUI|NSURLBookmarkResolutionWithoutMounting relativeToURL:nil bookmarkDataIsStale:NO error:nil];
+				if (url && [url isFileURL]) {
+					[documentsArray addObject:[url path]];
+				}
+			}
+		}
+		return documentsArray;
+	}
+	else if ([NSApplication isElCapitan]) {
+		NSString *sflPath = [NSString stringWithFormat:pSharedFileListPathTemplate, bundleIdentifier, @"sfl"];
 		NSString *sflStandardized = [sflPath stringByStandardizingPath];
 		if ([[NSFileManager defaultManager] fileExistsAtPath:sflStandardized isDirectory:nil]) {
 			NSDictionary *sflData = [NSKeyedUnarchiver unarchiveObjectWithFile:sflStandardized];
@@ -321,7 +336,12 @@ NSArray *recentDocumentsForBundle(NSString *bundleIdentifier) {
             // Does the app have valid recent documents
             if (bundleIdentifier) {
                 if ([NSApplication isElCapitan]) {
-                    NSString *sflPath = [NSString stringWithFormat:pSharedFileListPathTemplate, bundleIdentifier];
+					NSString *sflPath;
+					if ([NSApplication isHighSierra]) {
+						sflPath = [NSString stringWithFormat:pSharedFileListPathTemplate, bundleIdentifier, @"sfl2"];
+					} else {
+						sflPath = [NSString stringWithFormat:pSharedFileListPathTemplate, bundleIdentifier, @"sfl"];
+					}
                     if ([[NSFileManager defaultManager] fileExistsAtPath:[sflPath stringByStandardizingPath] isDirectory:nil]) {
                         return YES;
                     }
@@ -499,7 +519,7 @@ NSArray *recentDocumentsForBundle(NSString *bundleIdentifier) {
 					QSCatalogEntry *theEntry = [[QSLibrarian sharedInstance] entryForID:childPreset];
 					newChildren = [theEntry contentsScanIfNeeded:YES];
 				} else {
-					NSArray *recentDocuments = recentDocumentsForBundle(bundleIdentifier);
+					NSArray *recentDocuments = QSGetRecentDocumentsForBundle(bundleIdentifier);
 					NSArray *iCloudDocuments = [QSDownloads iCloudDocumentsForBundleID:bundleIdentifier];
 					// combine recent and iCloud documents, removing duplicates
                     NSIndexSet *ind = [iCloudDocuments indexesOfObjectsWithOptions:NSEnumerationConcurrent passingTest:^BOOL(QSObject *icdoc, NSUInteger i, BOOL *stop) {
@@ -561,10 +581,21 @@ NSArray *recentDocumentsForBundle(NSString *bundleIdentifier) {
 
 @implementation QSBasicObject (FileHandling)
 
-- (NSString *)singleFilePath {return [self objectForType:QSFilePathType];}
+- (NSString *)singleFilePath {
+	NSString *path = [self objectForType:QSFilePathType];
+	if (![path isKindOfClass:[NSString class]]) {
+		NSLog(@"unexpected object for file path: %@, object: %@", path, self);
+		return nil;
+	}
+	return path;
+}
 
 - (NSString *)validSingleFilePath {
 	NSString *path = [self objectForType:QSFilePathType];
+	if (![path isKindOfClass:[NSString class]]) {
+		NSLog(@"unexpected object for file path: %@, object: %@", path, self);
+		return nil;
+	}
 	if (path && [[NSFileManager defaultManager] fileExistsAtPath:path])
 		return path;
 	return nil;

@@ -18,10 +18,6 @@
 
 CGFloat QSMinScore = 0.333333;
 
-static NSInteger presetSort(QSCatalogEntry *item1, QSCatalogEntry *item2, void *librarian) {
-	return [[item1 name] caseInsensitiveCompare:[item2 name]];
-}
-
 QSLibrarian *QSLib = nil;
 
 #ifdef DEBUG
@@ -152,14 +148,8 @@ static CGFloat searchSpeed = 0.0;
 
 - (void)registerPresets:(NSArray *)newPresets inBundle:(NSBundle *)bundle scan:(BOOL)scan {
 	for (NSMutableDictionary *dict in newPresets) {
-        // Set `bundle` before the entry gets created
-		dict[@"bundle"] = bundle;
 		QSCatalogEntry *entry = [QSCatalogEntry entryWithDictionary:dict];
 		NSString *path = [dict objectForKey:@"catalogPath"];
-
-		NSArray *grandchildren = [entry deepChildrenWithGroups:YES leaves:YES disabled:YES];
-
-		[grandchildren setValue:bundle forKey:@"bundle"];
 
         QSCatalogEntry *parent = nil;
 		if ([path isEqualToString:@"/"])
@@ -172,7 +162,9 @@ static CGFloat searchSpeed = 0.0;
 		}
 		[parent.children addObject:entry];
 #warning oh yeah, while we're at it, sort on each loop !
-		[parent.children sortUsingFunction:presetSort context:(__bridge void *)(self)];
+        [parent.children sortUsingComparator:^NSComparisonResult(QSCatalogEntry *obj1, QSCatalogEntry *obj2) {
+            return [obj1.name localizedCaseInsensitiveCompare:obj2.name];
+        }];
 		if (scan) [entry scanForced:YES];
 	}
 	//[catalogChildren replaceObjectsInRange:NSMakeRange(0, 0) withObjectsFromArray:newPresets];
@@ -322,6 +314,11 @@ static CGFloat searchSpeed = 0.0;
                 [self setIdentifier:[obj identifier] forObject:obj];
             } else {
                 NSString *ident = [NSString stringWithFormat:@"QSID:%@:%@", [entry identifier], [obj displayName]];
+				if ([[obj primaryType] isEqualToString:QSTextType]) {
+					// don't add identifiers to string objects
+					// it ends up replacing the string value
+					ident = [obj objectForType:QSTextType];
+				}
                 [obj setIdentifier:ident];
             }
         }
@@ -375,14 +372,15 @@ static CGFloat searchSpeed = 0.0;
 		if (![[thisShelf pathExtension] isEqualToString:@"qsshelf"])
             continue;
         
-        NSString *errorString;
+        NSError *error;
         NSData *data = [NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:thisShelf]];
-        dictionaryArray = [NSPropertyListSerialization propertyListFromData:data
-                                                           mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                                                     format:NULL
-                                                           errorDescription:&errorString];
+        dictionaryArray = [NSPropertyListSerialization propertyListWithData:data
+																	options:NSPropertyListMutableContainersAndLeaves
+																	 format:NULL
+																	  error:&error];
+
         if (dictionaryArray == nil) {
-            NSLog(@"Error reading shelf file %@: %@", thisShelf, errorString);
+            NSLog(@"Error reading shelf file %@: %@", thisShelf, error);
             continue;
         }
 

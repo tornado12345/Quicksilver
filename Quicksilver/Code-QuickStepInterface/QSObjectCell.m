@@ -195,8 +195,6 @@
 		NSRect imageRect = sizeRectInRect(rectFromSize([image size]), NSMakeRect(0, 0, 22, 22), NO);
 		imageRect = NSOffsetRect(imageRect, NSMaxX(theRect) -NSMaxX(imageRect), NSMaxY(theRect)-NSMaxY(imageRect));
 		return imageRect;
-		theRect.size.width = theRect.size.height;
-
 	} else {
 		NSRect imageRect = [self imageRectForBounds:theRect];
 		return alignRectInRect(countImageRect, imageRect, 3);
@@ -276,30 +274,6 @@
 
 	}
 	[self drawInteriorWithFrame:[self drawingRectForBounds:cellFrame] inView:controlView];
-}
-
-- (NSArray*)imagesForTypes:(NSArray *)types {
-	NSMutableArray *typeImageArray = [NSMutableArray arrayWithCapacity:1];
-	NSString *thisType;
-	NSDictionary *imageDictionary = [self typeImageDictionary];
-	for(thisType in types) {
-		NSImage *typeImage = [imageDictionary objectForKey:thisType];
-		if (typeImage) [typeImageArray addObject:typeImage];
-	}
-	return typeImageArray;
-}
-- (NSDictionary *)typeImageDictionary {
-    static __strong NSDictionary *d;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        d = [NSDictionary dictionaryWithObjectsAndKeys:
-             QSFilePathType, [QSResourceManager imageNamed:@"fileType"] ,
-             QSTextType, [QSResourceManager imageNamed:@"textType"] ,
-             NSURLPboardType, [QSResourceManager imageNamed:@"webType"] ,
-             NSRTFDPboardType, [QSResourceManager imageNamed:@"stylizedTextType"] ,
-             nil];
-    });
-    return d;
 }
 
 - (NSImage *)image {

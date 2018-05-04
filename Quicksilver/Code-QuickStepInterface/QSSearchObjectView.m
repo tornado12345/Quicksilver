@@ -34,6 +34,16 @@
 #define SEARCH_RESULT_DELAY 0.05f
 #define kQSSmartSpace @"smartspace"
 
+typedef NS_ENUM(NSUInteger, QSSearchSpaceBarBehavior) {
+	QSSearchSpaceBarBehaviorNormal = 1,
+	QSSearchSpaceBarBehaviorSelectNextResult,
+	QSSearchSpaceBarBehaviorJumpToIndirect,
+	QSSearchSpaceBarBehaviorSwitchToText,
+	QSSearchSpaceBarBehaviorSelectContents,
+	QSSearchSpaceBarBehaviorQuicklook,
+	QSSearchSpaceBarBehaviorSmart
+};
+
 NSMutableDictionary *bindingsDict = nil;
 
 @implementation QSSearchObjectView
@@ -91,6 +101,7 @@ NSMutableDictionary *bindingsDict = nil;
 	searchMode = SearchFilter;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideResultView:) name:@"NSWindowDidResignKeyNotification" object:[self window]];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearAll) name:QSReleaseAllNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectIconModified:) name:QSObjectIconModified object:nil];
 
 	resultsPadding = 0;
 	historyArray = [[NSMutableArray alloc] initWithCapacity:10];
@@ -538,8 +549,6 @@ NSMutableDictionary *bindingsDict = nil;
     }
     // if the two objects are not the same, send an 'object chagned' notif
 	if (newObject != currentObject) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:QSObjectIconModified object:currentObject];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectIconModified:) name:QSObjectIconModified object:newObject];
 		[super setObjectValue:newObject];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SearchObjectChanged" object:self];
 	}
@@ -619,7 +628,7 @@ NSMutableDictionary *bindingsDict = nil;
 
 - (void)objectIconModified:(NSNotification *)notif {
     // icon changed - update it in the pane
-    [self setNeedsDisplay:YES];
+	[self setNeedsDisplay:YES];
 }
 
 #pragma mark -
@@ -907,7 +916,7 @@ NSMutableDictionary *bindingsDict = nil;
 		if ([resetTimer isValid]) {
 			[resetTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:resetDelay]];
 		} else {
-			resetTimer = [NSTimer scheduledTimerWithTimeInterval:resetDelay target:self selector:@selector(clearSearch) userInfo:nil repeats:NO];
+			resetTimer = [NSTimer scheduledTimerWithTimeInterval:resetDelay target:self selector:@selector(resetString) userInfo:nil repeats:NO];
 		}
 	}
 }
@@ -1332,11 +1341,11 @@ NSMutableDictionary *bindingsDict = nil;
 
 - (void)insertSpace:(id)sender
 {
-	NSInteger behavior = [[NSUserDefaults standardUserDefaults] integerForKey:@"QSSearchSpaceBarBehavior"];
+	QSSearchSpaceBarBehavior behavior = [[NSUserDefaults standardUserDefaults] integerForKey:@"QSSearchSpaceBarBehavior"];
 
     QSObject *newSelectedObject = [[super objectValue] resolvedObject];
     QSAction *action = [[self actionSelector] objectValue];
-    if (behavior == 7) {
+    if (behavior == QSSearchSpaceBarBehaviorSmart) {
         // override smart defaults with type-specific behavior (if defined)
         NSNumber *typeBehavior = [[[QSReg tableNamed:@"QSTypeDefinitions"] objectForKey:[newSelectedObject primaryType]] objectForKey:kQSSmartSpace];
         if (typeBehavior) {
@@ -1345,28 +1354,28 @@ NSMutableDictionary *bindingsDict = nil;
     }
 
 	switch(behavior) {
-		case 1: //Normal
+		case QSSearchSpaceBarBehaviorNormal:
 			[self insertText:@" "];
 			break;
-		case 2: //Select next result
+		case QSSearchSpaceBarBehaviorSelectNextResult:
 			if ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask)
 				[self moveUp:sender];
 			else
 				[self moveDown:sender];
 			break;
-		case 3: //Jump to Indirect
+		case QSSearchSpaceBarBehaviorJumpToIndirect:
 			[self shortCircuit:sender];
 			break;
-		case 4: //Switch to text
+		case QSSearchSpaceBarBehaviorSwitchToText:
 			[self transmogrify:sender];
 			break;
-		case 5: //Show child contents/
+		case QSSearchSpaceBarBehaviorSelectContents:
 			if ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask)
 				[self moveLeft:sender];
 			else
 				[self moveRight:sender];
             break;
-        case 6: // Show Quicklook window
+        case QSSearchSpaceBarBehaviorQuicklook:
             [self togglePreviewPanel:nil];
 			break;
 
@@ -1428,8 +1437,8 @@ NSMutableDictionary *bindingsDict = nil;
 - (IBAction)grabSelection:(id)sender {
 	if (!allowNonActions) return;
 	QSObject *newSelection = [self externalSelection];
-    
 	[self redisplayObjectValue:newSelection];
+	[self updateHistory];
 }
 
 - (IBAction)dropSelection:(id)sender {

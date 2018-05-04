@@ -35,6 +35,30 @@
 			<key>ID</key>
 			<string>QSActivateTextModeTrigger</string>
 		</dict>
+		<dict>
+			<key>set</key>
+			<string>Quicksilver</string>
+			<key>applicationScopeType</key>
+			<integer>1</integer>
+			<key>keyCode</key>
+			<integer>12</integer>
+			<key>enabled</key>
+			<true/>
+			<key>modifiers</key>
+			<integer>1835305</integer>
+			<key>onPress</key>
+			<true/>
+			<key>type</key>
+			<string>QSHotKeyTrigger</string>
+			<key>command</key>
+			<string>QSRelaunchSelfCommand</string>
+			<key>ID</key>
+			<string>QSRelaunchSelfTrigger</string>
+			<key>applicationScope</key>
+			<array>
+				<string>com.blacktree.Quicksilver</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.blacktree.Quicksilver.QSCorePlugIn</string>
@@ -230,6 +254,21 @@
 			<string>pasteObjectAsPlainText:</string>
 			<key>icon</key>
 			<string>Clipboard</string>
+		</dict>
+		<key>QSObjectLogConsoleAction</key>
+		<dict>
+			<key>validatesObjects</key>
+			<false/>
+			<key>actionClass</key>
+			<string>QSObjectActions</string>
+			<key>directTypes</key>
+			<array>
+				<string>*</string>
+			</array>
+			<key>actionSelector</key>
+			<string>logObjectToConsole:</string>
+			<key>enabled</key>
+			<false/>
 		</dict>
 		<key>QSCommandExecuteAfterDelayAction</key>
 		<dict>
@@ -1438,6 +1477,18 @@
 				<key>name</key>
 				<string>Show Command Window </string>
 			</dict>
+			<key>QSRelaunchSelfCommand</key>
+			<dict>
+				<key>command</key>
+				<dict>
+					<key>actionID</key>
+					<string>QSObjCSendMessageAction</string>
+					<key>directID</key>
+					<string>QSRelaunch</string>
+				</dict>
+				<key>name</key>
+				<string>Relaunch Quicksilver</string>
+			</dict>
 		</dict>
 		<key>QSObjectHandlers</key>
 		<dict>
@@ -1535,6 +1586,13 @@
 			<string>QSHTMLLinkParser</string>
 			<key>QSDirectoryParser</key>
 			<string>QSDirectoryParser</string>
+			<key>QSTextLineParser</key>
+			<string>QSTextLineParser</string>
+		</dict>
+		<key>QSURLParsers</key>
+		<dict>
+			<key>QSHTMLLinkParser</key>
+			<string>QSHTMLLinkParser</string>
 			<key>QSTextLineParser</key>
 			<string>QSTextLineParser</string>
 		</dict>
@@ -2110,8 +2168,6 @@
 					<integer>3</integer>
 					<key>enabled</key>
 					<false/>
-					<key>userInfo</key>
-					<string>commands</string>
 					<key>ID</key>
 					<string>QSPresetCommandHistory</string>
 				</dict>
@@ -2126,8 +2182,6 @@
 					<integer>1</integer>
 					<key>name</key>
 					<string>Recent Objects</string>
-					<key>userInfo</key>
-					<string>objects</string>
 				</dict>
 			</array>
 			<key>catalogPath</key>
@@ -2181,8 +2235,6 @@
 					<integer>1</integer>
 					<key>ID</key>
 					<string>QSPresetUserScripts</string>
-					<key>modificationDate</key>
-					<real>103923120</real>
 					<key>settings</key>
 					<dict>
 						<key>parser</key>

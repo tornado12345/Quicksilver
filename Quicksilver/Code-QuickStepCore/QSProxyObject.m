@@ -72,26 +72,27 @@
     //NSLog(@"Proxy: %@", proxy);
     if (proxy) {
         [self setObject:proxy forCache:QSProxyTargetCache];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(releaseProxy:) name:QSInterfaceDeactivatedNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(releaseProxy:) name:QSCommandExecutedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectIconModified:) name:QSObjectIconModified object:proxy];
     }
-    
-    NSTimeInterval interval = kQSDefaultProxyCacheTime;
-    
-    if ([provider respondsToSelector:@selector(cacheTimeForProxy:)])
-        interval = [[self proxyProvider] cacheTimeForProxy:self];
-    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)interval * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self releaseProxy];
-    });
 	return proxy;
 }
 
 
-- (void)releaseProxy {
-	//NSLog(@"release proxy");
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:QSObjectIconModified object:[cache objectForKey:QSProxyTargetCache]];
+- (void)releaseProxy:(NSNotification *)notif {
+	if ([[notif name] isEqualToString:QSInterfaceDeactivatedNotification]) {
+		NSString *reason = [[notif userInfo] objectForKey:kQSInterfaceDeactivatedReason];
+		if ([reason isEqualToString:@"execution"]) {
+			// if the interface is hiding from running a command, keep the cached value
+			// it will get cleared after the command executes
+			return;
+		}
+	}
 	[cache removeObjectForKey:QSProxyTargetCache];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:QSInterfaceDeactivatedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:QSCommandExecutedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:QSObjectIconModified object:[cache objectForKey:QSProxyTargetCache]];
 }
 
 - (NSArray *)proxyTypes {

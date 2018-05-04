@@ -132,8 +132,20 @@
 	[self searchObjectChanged:nil];
 
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:progressIndicator selector:@selector(startAnimation:) name:QSTasksStartedNotification object:nil];
-	[nc addObserver:progressIndicator selector:@selector(stopAnimation:) name:QSTasksEndedNotification object:nil];
+	[nc addObserver:self selector:@selector(taskStarted:) name:QSTasksStartedNotification object:nil];
+	[nc addObserver:self selector:@selector(taskEnded:) name:QSTasksEndedNotification object:nil];
+}
+
+- (void)taskStarted:(NSNotification *)notif {
+	QSGCDMainAsync(^{
+		[progressIndicator startAnimation:self];
+	});
+}
+
+- (void)taskEnded:(NSNotification *)notif {
+	QSGCDMainAsync(^{
+		[progressIndicator stopAnimation:self];
+	});
 }
 
 - (QSCommand *)currentCommand { 
@@ -197,7 +209,6 @@
 		CGSSetGlobalHotKeyOperatingMode(conn, CGSGlobalHotKeyEnable);
 	}
 	if ([[self window] isVisible] && ![[self window] attachedSheet]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"InterfaceDeactivated" object:self];
 		[[self window] makeFirstResponder:nil];
 	}
     // Close the Quicklook panel if the QS window closes
@@ -232,20 +243,24 @@
 }
 
 - (void)hideMainWindow:(id)sender {
+	[[NSNotificationCenter defaultCenter] postNotificationName:QSInterfaceDeactivatedNotification object:self];
 	[self hideMainWindowWithEffect:nil];
 }
 
 - (void)hideMainWindowFromExecution:(id)sender {
+	[[NSNotificationCenter defaultCenter] postNotificationName:QSInterfaceDeactivatedNotification object:self userInfo:@{kQSInterfaceDeactivatedReason: @"execution"}];
 	[self hideMainWindowWithEffect:
      [[self window] windowPropertyForKey:kQSWindowExecEffect]];
 }
 
 - (void)hideMainWindowFromCancel:(id)sender {
+	[[NSNotificationCenter defaultCenter] postNotificationName:QSInterfaceDeactivatedNotification object:self userInfo:@{kQSInterfaceDeactivatedReason: @"cancel"}];
 	[self hideMainWindowWithEffect:
      [[self window] windowPropertyForKey:kQSWindowCancelEffect]];
 }
 
 - (void)hideMainWindowFromFade:(id)sender {
+	[[NSNotificationCenter defaultCenter] postNotificationName:QSInterfaceDeactivatedNotification object:self userInfo:@{kQSInterfaceDeactivatedReason: @"fade"}];
 	if ([[self window] respondsToSelector:@selector(windowPropertyForKey:)])
 		[self hideMainWindowWithEffect:
          [[self window] windowPropertyForKey:kQSWindowFadeEffect]];
@@ -618,9 +633,7 @@
 		NSBeep();
 		return;
 	}
-    
-    // add the object being executed to the history
-    [dSelector updateHistory];
+
     QSAction *action = [aSelector objectValue];
 	NSInteger argumentCount = [action argumentCount];
 	if (argumentCount == 2) {
@@ -634,9 +647,24 @@
 		}
 		[QSExec noteIndirect:[iSelector objectValue] forAction:action];
 	}
+	
+	// add the object being executed to the history
+	[dSelector updateHistory];
+	// make sure to save mnemonics before interface is closed. Closing the interface clears the search string so they must be saved before this
+	[QSHist addCommand:[self currentCommand]];
+	[dSelector saveMnemonic];
+	[aSelector saveMnemonic];
+	if (argumentCount == 2) {
+		[iSelector saveMnemonic];
+	}
+	
 	if (encapsulate) {
 		[self encapsulateCommand];
 		return;
+	}
+	if (!cont) {
+		// this ensures the interface is hidden before an action is run e.g. the 'capture screen region' and 'type text' actions needs this
+		[self hideMainWindowFromExecution:self]; // *** this should only hide if no result comes in like 2 seconds
 	}
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:kExecuteInThread] && [action canThread]) {
         QSGCDAsync(^{
@@ -648,16 +676,8 @@
             [self executeCommandThreaded];
         });
     }
-	[QSHist addCommand:[self currentCommand]];
-	[dSelector saveMnemonic];
- 	[aSelector saveMnemonic];
-	if (argumentCount == 2) {
-        [iSelector saveMnemonic];
-    }
 	if (cont) {
         [[self window] makeFirstResponder:aSelector];
-	} else {
-		[self hideMainWindowFromExecution:self]; // *** this should only hide if no result comes in like 2 seconds
 	}
 }
 
@@ -676,7 +696,7 @@
 #pragma mark IBActions
 - (IBAction)showInterface:(id)sender {
 	 
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"InterfaceActivated" object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:QSInterfaceActivatedNotification object:self];
 	[self showMainWindow:self];
 }
 

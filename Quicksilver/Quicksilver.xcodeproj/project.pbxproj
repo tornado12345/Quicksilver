@@ -128,8 +128,16 @@
 		4D66BC5E1487027E00351C42 /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D66BBF21486FFF000351C42 /* NSURL+NDCarbonUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4D6A663410AB2A2F00898CA4 /* QSTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D9C9680D134BDD00D91825 /* QSTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D6D369F17E61F93007017A6 /* QSCatalogEntry_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6D369E17E61F93007017A6 /* QSCatalogEntry_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4D6E8EC01EA93D61003CD3CE /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6E8EBA1EA93D61003CD3CE /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D6E8EC11EA93D61003CD3CE /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6E8EBB1EA93D61003CD3CE /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D6E8EC21EA93D61003CD3CE /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6E8EBC1EA93D61003CD3CE /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D6E8EC31EA93D61003CD3CE /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6E8EBD1EA93D61003CD3CE /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D6E8EC41EA93D61003CD3CE /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6E8EBE1EA93D61003CD3CE /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D6E8EC51EA93D61003CD3CE /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6E8EBF1EA93D61003CD3CE /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D7B9FA117F2040300A91F64 /* QSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD89F1F0EBDDBA9005A15AE /* QSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D7CDDB217E9154E00E54AB9 /* QSTaskController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D7CDDB117E9154E00E54AB9 /* QSTaskController_Private.h */; };
+		4D7DE22F1EA97614003CD3CE /* QSAlertManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB6B07B20DD10044D6EF /* QSAlertManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D7DE2301EA97614003CD3CE /* QSAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB6C07B20DD10044D6EF /* QSAlertManager.m */; };
 		4D7DF45416ADC7CA004BA4BE /* DefaultsMap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D7DF45316ADC7CA004BA4BE /* DefaultsMap.plist */; };
 		4D7DF45716ADCDEF004BA4BE /* QSAdvancedPrefPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D7DF45516ADCDEF004BA4BE /* QSAdvancedPrefPane.strings */; };
 		4D8410DC1D428A1D004C3A6F /* QSObjectHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8410DB1D428A1D004C3A6F /* QSObjectHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,7 +166,12 @@
 		4DD89F290EBDDBA9005A15AE /* QSNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD89F200EBDDBA9005A15AE /* QSNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DD89F2A0EBDDBA9005A15AE /* QSPreferenceKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD89F210EBDDBA9005A15AE /* QSPreferenceKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DD89F2B0EBDDBA9005A15AE /* QSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD89F220EBDDBA9005A15AE /* QSTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4DF329D61EA2C1C9003CD3CE /* QSSense.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB7907B20DD10044D6EF /* QSSense.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4DF329D71EA2C1D5003CD3CE /* QSSense.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB7A07B20DD10044D6EF /* QSSense.m */; };
+		4DF329D91EA2C5F0003CD3CE /* TestQSSense.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF329D81EA2C5F0003CD3CE /* TestQSSense.m */; };
 		4DF441B50ED9C66700656AD1 /* QSHandledObjectHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8AD4D08E6328D000A65C4 /* QSHandledObjectHandler.m */; };
+		4DFD65C51EA9334B003CD3CE /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFD65C41EA93336003CD3CE /* FMDB.framework */; };
+		4DFD65C91EA93421003CD3CE /* FMDB.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFD65C41EA93336003CD3CE /* FMDB.framework */; };
 		4DFE7DA20E081A3B000B9AA3 /* NSImage+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE7DA00E081A30000B9AA3 /* NSImage+QuickLook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4DFE7DA30E081A3C000B9AA3 /* NSImage+QuickLook.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DFE7D9F0E081A30000B9AA3 /* NSImage+QuickLook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DFE7DC70E082132000B9AA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
@@ -327,7 +340,7 @@
 		92E9461A0D04CCEF0013377F /* QSModifierKeyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E946180D04CCEF0013377F /* QSModifierKeyEvents.m */; };
 		CD14B79018D06604000FE86A /* QSThreadSafeMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD14B78C18D065F5000FE86A /* QSThreadSafeMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD14B79118D06609000FE86A /* QSThreadSafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CD14B78D18D065F5000FE86A /* QSThreadSafeMutableDictionary.m */; };
-		CD1B17D9158A573000E4A030 /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1E661158A4D0900355A9F /* VDKQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD1B17D9158A573000E4A030 /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1E661158A4D0900355A9F /* VDKQueue.m */; };
 		CD1B17DA158A573200E4A030 /* VDKQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE1E660158A4D0900355A9F /* VDKQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD29AEB2195663770052C893 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD29AEB0195663770052C893 /* InfoPlist.strings */; };
 		CD29AEB4195663770052C893 /* Core_Support_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD29AEB3195663770052C893 /* Core_Support_Tests.m */; };
@@ -335,7 +348,6 @@
 		CD29AEBD195664110052C893 /* QSFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E5F9AF07B1FCFC0044D6EF /* QSFoundation.framework */; };
 		CD29AEBF195665450052C893 /* QSDirectoryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5901F0804398F0031368C /* QSDirectoryParser.m */; };
 		CD34CCDF192BA28400AC63A6 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97324FDCFA39411CA2CEA /* AppKit.framework */; };
-		CD39DE5F16B43FBF0087B09E /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CD39DE6016B43FC40087B09E /* (null) in Headers */ = {isa = PBXBuildFile; };
 		CD39DE6216B43FDD0087B09E /* (null) in Resources */ = {isa = PBXBuildFile; };
 		CD3AEA9A17D7F0300011F2E3 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
@@ -422,6 +434,7 @@
 		D46D3C7D16B33D0B00387EA9 /* countBadge4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D46D3C7916B33D0B00387EA9 /* countBadge4@2x.png */; };
 		D46D3C7E16B33D0B00387EA9 /* countBadge5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D46D3C7A16B33D0B00387EA9 /* countBadge5@2x.png */; };
 		D48F231D1C99CCC4006504A8 /* QSSharedFileListSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D48F231C1C99CCC4006504A8 /* QSSharedFileListSource.m */; };
+		D48FC4FC1FBE89B4009600EB /* QSWebSource.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48FC4FB1FBE89B4009600EB /* QSWebSource.xib */; };
 		D493990D1350078E00B908C6 /* QSDownloads.h in Headers */ = {isa = PBXBuildFile; fileRef = D49399091350078E00B908C6 /* QSDownloads.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D493990E1350078E00B908C6 /* QSDownloads.m in Sources */ = {isa = PBXBuildFile; fileRef = D493990A1350078E00B908C6 /* QSDownloads.m */; };
 		D49A8B02166EA8FC0086B5A9 /* QSUserDefinedProxySource.m in Sources */ = {isa = PBXBuildFile; fileRef = D49A8B01166EA8FC0086B5A9 /* QSUserDefinedProxySource.m */; };
@@ -622,8 +635,6 @@
 		E1E5FBD507B20DD20044D6EF /* QSAction.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB6807B20DD10044D6EF /* QSAction.m */; };
 		E1E5FBD607B20DD20044D6EF /* QSActionProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB6907B20DD10044D6EF /* QSActionProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1E5FBD707B20DD20044D6EF /* QSActionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB6A07B20DD10044D6EF /* QSActionProvider.m */; };
-		E1E5FBD807B20DD20044D6EF /* QSAlertManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB6B07B20DD10044D6EF /* QSAlertManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1E5FBD907B20DD20044D6EF /* QSAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB6C07B20DD10044D6EF /* QSAlertManager.m */; };
 		E1E5FBDA07B20DD20044D6EF /* QSBadgeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB6D07B20DD10044D6EF /* QSBadgeImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1E5FBDB07B20DD20044D6EF /* QSBadgeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB6E07B20DD10044D6EF /* QSBadgeImage.m */; };
 		E1E5FBDC07B20DD20044D6EF /* QSCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB6F07B20DD10044D6EF /* QSCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -633,8 +644,6 @@
 		E1E5FBE207B20DD20044D6EF /* QSComputerSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB7507B20DD10044D6EF /* QSComputerSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1E5FBE307B20DD20044D6EF /* QSComputerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB7607B20DD10044D6EF /* QSComputerSource.m */; };
 		E1E5FBE407B20DD20044D6EF /* QSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB7707B20DD10044D6EF /* QSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1E5FBE607B20DD20044D6EF /* QSense.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB7907B20DD10044D6EF /* QSense.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1E5FBE707B20DD20044D6EF /* QSense.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB7A07B20DD10044D6EF /* QSense.m */; };
 		E1E5FBE807B20DD20044D6EF /* QSExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB7B07B20DD10044D6EF /* QSExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1E5FBE907B20DD20044D6EF /* QSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FB7C07B20DD10044D6EF /* QSExecutor.m */; };
 		E1E5FBEA07B20DD20044D6EF /* QSGlobalSelectionProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FB7D07B20DD10044D6EF /* QSGlobalSelectionProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -831,6 +840,55 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = Quicksilver;
 		};
+		4DFD65B91EA93336003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		4DFD65BB1EA93336003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
+		};
+		4DFD65BD1EA93336003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF5D041618416BB2008C5AA9;
+			remoteInfo = Tests;
+		};
+		4DFD65BF1EA93336003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6290CBB5188FE836009790F8;
+			remoteInfo = "FMDB-IOS";
+		};
+		4DFD65C11EA93336003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73EFE1C326AB000FFC730;
+			remoteInfo = "FMDB iOS";
+		};
+		4DFD65C31EA93336003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73F0B1C326ADA00FFC730;
+			remoteInfo = "FMDB MacOS";
+		};
+		4DFD65C61EA93366003CD3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83C73F0A1C326ADA00FFC730;
+			remoteInfo = "FMDB MacOS";
+		};
 		66448D9B14F42796000FA2E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -967,6 +1025,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4D6E8EB21EA93CFD003CD3CE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 1;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D8A0B3410AB23B6006AF163 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -975,6 +1042,17 @@
 			files = (
 				4D8A0B3F10AB2404006AF163 /* Configuration in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DFD65C81EA933FC003CD3CE /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4DFD65C91EA93421003CD3CE /* FMDB.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7F0BDE6D07FC9653002CBDDF /* Copy Automator Actions */ = {
@@ -1137,6 +1215,12 @@
 		4D66BC3B1487024500351C42 /* NSString+NDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NDUtilities.h"; sourceTree = "<group>"; };
 		4D66BC3C1487024500351C42 /* NSString+NDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NDUtilities.m"; sourceTree = "<group>"; };
 		4D6D369E17E61F93007017A6 /* QSCatalogEntry_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCatalogEntry_Private.h; sourceTree = "<group>"; usesTabs = 1; };
+		4D6E8EBA1EA93D61003CD3CE /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = FMDB/src/fmdb/FMDB.h; sourceTree = "<group>"; };
+		4D6E8EBB1EA93D61003CD3CE /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = FMDB/src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		4D6E8EBC1EA93D61003CD3CE /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = FMDB/src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		4D6E8EBD1EA93D61003CD3CE /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = FMDB/src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		4D6E8EBE1EA93D61003CD3CE /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = FMDB/src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		4D6E8EBF1EA93D61003CD3CE /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = FMDB/src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		4D7CDDB117E9154E00E54AB9 /* QSTaskController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSTaskController_Private.h; sourceTree = "<group>"; };
 		4D7DF45316ADC7CA004BA4BE /* DefaultsMap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultsMap.plist; sourceTree = "<group>"; };
 		4D7DF45616ADCDEF004BA4BE /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/QSAdvancedPrefPane.strings; sourceTree = "<group>"; };
@@ -1177,6 +1261,8 @@
 		4DD89F200EBDDBA9005A15AE /* QSNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSNotifications.h; sourceTree = "<group>"; usesTabs = 1; };
 		4DD89F210EBDDBA9005A15AE /* QSPreferenceKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPreferenceKeys.h; sourceTree = "<group>"; usesTabs = 1; };
 		4DD89F220EBDDBA9005A15AE /* QSTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSTypes.h; sourceTree = "<group>"; usesTabs = 1; };
+		4DF329D81EA2C5F0003CD3CE /* TestQSSense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestQSSense.m; path = "Tests/Tests-QSFoundation/TestQSSense.m"; sourceTree = "<group>"; };
+		4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = FMDB/fmdb.xcodeproj; sourceTree = "<group>"; };
 		4DFE7D9F0E081A30000B9AA3 /* NSImage+QuickLook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+QuickLook.h"; sourceTree = "<group>"; };
 		4DFE7DA00E081A30000B9AA3 /* NSImage+QuickLook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+QuickLook.m"; sourceTree = "<group>"; };
 		4DFE7DA10E081A30000B9AA3 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
@@ -1954,6 +2040,7 @@
 		D46D3C7A16B33D0B00387EA9 /* countBadge5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "countBadge5@2x.png"; sourceTree = "<group>"; };
 		D48F231B1C99CCC4006504A8 /* QSSharedFileListSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSSharedFileListSource.h; sourceTree = "<group>"; };
 		D48F231C1C99CCC4006504A8 /* QSSharedFileListSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSSharedFileListSource.m; sourceTree = "<group>"; };
+		D48FC4FB1FBE89B4009600EB /* QSWebSource.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QSWebSource.xib; sourceTree = "<group>"; };
 		D49399091350078E00B908C6 /* QSDownloads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSDownloads.h; sourceTree = "<group>"; usesTabs = 1; };
 		D493990A1350078E00B908C6 /* QSDownloads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSDownloads.m; sourceTree = "<group>"; usesTabs = 1; };
 		D49A8B00166EA8FC0086B5A9 /* QSUserDefinedProxySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSUserDefinedProxySource.h; sourceTree = "<group>"; };
@@ -2185,8 +2272,8 @@
 		E1E5FB7507B20DD10044D6EF /* QSComputerSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSComputerSource.h; sourceTree = "<group>"; usesTabs = 1; };
 		E1E5FB7607B20DD10044D6EF /* QSComputerSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSComputerSource.m; sourceTree = "<group>"; usesTabs = 1; };
 		E1E5FB7707B20DD10044D6EF /* QSCore.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSCore.h; sourceTree = "<group>"; usesTabs = 1; };
-		E1E5FB7907B20DD10044D6EF /* QSense.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSense.h; sourceTree = "<group>"; usesTabs = 1; };
-		E1E5FB7A07B20DD10044D6EF /* QSense.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSense.m; sourceTree = "<group>"; usesTabs = 1; };
+		E1E5FB7907B20DD10044D6EF /* QSSense.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSSense.h; sourceTree = "<group>"; usesTabs = 1; };
+		E1E5FB7A07B20DD10044D6EF /* QSSense.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSSense.m; sourceTree = "<group>"; usesTabs = 1; };
 		E1E5FB7B07B20DD10044D6EF /* QSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSExecutor.h; sourceTree = "<group>"; usesTabs = 1; };
 		E1E5FB7C07B20DD10044D6EF /* QSExecutor.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSExecutor.m; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 1; };
 		E1E5FB7D07B20DD10044D6EF /* QSGlobalSelectionProvider.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSGlobalSelectionProvider.h; sourceTree = "<group>"; usesTabs = 1; };
@@ -2409,6 +2496,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DFD65C51EA9334B003CD3CE /* FMDB.framework in Frameworks */,
 				E1E5FAE307B207180044D6EF /* IOKit.framework in Frameworks */,
 				E1E5FAE407B207450044D6EF /* Carbon.framework in Frameworks */,
 				E1E5FB1507B2079E0044D6EF /* Security.framework in Frameworks */,
@@ -2607,6 +2695,33 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		4DFD65751EA93134003CD3CE /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				4D6E8EBA1EA93D61003CD3CE /* FMDB.h */,
+				4D6E8EBB1EA93D61003CD3CE /* FMDatabase.h */,
+				4D6E8EBC1EA93D61003CD3CE /* FMResultSet.h */,
+				4D6E8EBD1EA93D61003CD3CE /* FMDatabaseQueue.h */,
+				4D6E8EBE1EA93D61003CD3CE /* FMDatabaseAdditions.h */,
+				4D6E8EBF1EA93D61003CD3CE /* FMDatabasePool.h */,
+				4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
+		4DFD65B11EA93335003CD3CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4DFD65BA1EA93336003CD3CE /* fmdb */,
+				4DFD65BC1EA93336003CD3CE /* libFMDB.a */,
+				4DFD65BE1EA93336003CD3CE /* Tests.xctest */,
+				4DFD65C01EA93336003CD3CE /* libFMDB-IOS.a */,
+				4DFD65C21EA93336003CD3CE /* FMDB.framework */,
+				4DFD65C41EA93336003CD3CE /* FMDB.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4DFE7D9E0E081A30000B9AA3 /* NSImageQuickLook */ = {
 			isa = PBXGroup;
 			children = (
@@ -2642,6 +2757,7 @@
 			children = (
 				CD661C5319DBD2F3000F3695 /* TestNSApplicationMethods.m */,
 				66448E1214F42A4E000FA2E2 /* TestPathWildcards.m */,
+				4DF329D81EA2C5F0003CD3CE /* TestQSSense.m */,
 			);
 			name = QSFoundationTests;
 			sourceTree = "<group>";
@@ -2856,6 +2972,7 @@
 				E102F98C06625D7300843027 /* QuitConfirm.xib */,
 				E102F98D06625D7300843027 /* ResultWindow.xib */,
 				D4AA5992166F9DD4006E8FD1 /* QSUserDefinedProxySource.xib */,
+				D48FC4FB1FBE89B4009600EB /* QSWebSource.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -2984,6 +3101,7 @@
 		E103EE2406471DDE00447FE0 /* Code-External */ = {
 			isa = PBXGroup;
 			children = (
+				4DFD65751EA93134003CD3CE /* FMDB */,
 				CDA5253416AED83900D2017F /* DisableSubviews */,
 				CDC10E6D16221459005FA734 /* Sparkle */,
 				D413172B15DEE5D90021479B /* LaunchAtLoginController */,
@@ -3184,6 +3302,8 @@
 			isa = PBXGroup;
 			children = (
 				CD803A361C5C3D2D00CF90F3 /* SFLListItem.h */,
+				E1E5FB6B07B20DD10044D6EF /* QSAlertManager.h */,
+				E1E5FB6C07B20DD10044D6EF /* QSAlertManager.m */,
 				CD14B78C18D065F5000FE86A /* QSThreadSafeMutableDictionary.h */,
 				CD14B78D18D065F5000FE86A /* QSThreadSafeMutableDictionary.m */,
 				CDD6F3F817EB4DED00ACE129 /* QSIntValueTransformer.h */,
@@ -3194,6 +3314,8 @@
 				CDCC200E10A4C14B009C4EED /* QSMDPredicate.h */,
 				CDCC200F10A4C14B009C4EED /* QSMDPredicate.m */,
 				4DD89F1F0EBDDBA9005A15AE /* QSMacros.h */,
+				E1E5FB7907B20DD10044D6EF /* QSSense.h */,
+				E1E5FB7A07B20DD10044D6EF /* QSSense.m */,
 				E1E5FA6E07B204BE0044D6EF /* NDAlias+QSMods.h */,
 				E1E5FA6F07B204BE0044D6EF /* NDAlias+QSMods.m */,
 				E1E5FA7007B204BE0044D6EF /* NDProcess+QSMods.h */,
@@ -3285,8 +3407,6 @@
 				E1E5FB6807B20DD10044D6EF /* QSAction.m */,
 				E1E5FB6907B20DD10044D6EF /* QSActionProvider.h */,
 				E1E5FB6A07B20DD10044D6EF /* QSActionProvider.m */,
-				E1E5FB6B07B20DD10044D6EF /* QSAlertManager.h */,
-				E1E5FB6C07B20DD10044D6EF /* QSAlertManager.m */,
 				E1E5FB6D07B20DD10044D6EF /* QSBadgeImage.h */,
 				E1E5FB6E07B20DD10044D6EF /* QSBadgeImage.m */,
 				4DD2CF340E7B345500BA1128 /* QSBasicObject.h */,
@@ -3306,8 +3426,6 @@
 				4DD89F1C0EBDDBA9005A15AE /* QSDefines.h */,
 				D49399091350078E00B908C6 /* QSDownloads.h */,
 				D493990A1350078E00B908C6 /* QSDownloads.m */,
-				E1E5FB7907B20DD10044D6EF /* QSense.h */,
-				E1E5FB7A07B20DD10044D6EF /* QSense.m */,
 				E1E5FB7B07B20DD10044D6EF /* QSExecutor.h */,
 				E1E5FB7C07B20DD10044D6EF /* QSExecutor.m */,
 				E1E5FB7D07B20DD10044D6EF /* QSGlobalSelectionProvider.h */,
@@ -3590,7 +3708,6 @@
 				E1E5FBD207B20DD20044D6EF /* NSString_Purification.h in Headers */,
 				E1E5FBD407B20DD20044D6EF /* QSAction.h in Headers */,
 				E1E5FBD607B20DD20044D6EF /* QSActionProvider.h in Headers */,
-				E1E5FBD807B20DD20044D6EF /* QSAlertManager.h in Headers */,
 				E1E5FBDA07B20DD20044D6EF /* QSBadgeImage.h in Headers */,
 				4DD2CF360E7B345500BA1128 /* QSBasicObject.h in Headers */,
 				7FB8D6FC07B98B1300062022 /* QSCatalogEntry.h in Headers */,
@@ -3600,7 +3717,6 @@
 				E1E5FBE407B20DD20044D6EF /* QSCore.h in Headers */,
 				4DD89F240EBDDBA9005A15AE /* QSDebug.h in Headers */,
 				4DD89F250EBDDBA9005A15AE /* QSDefines.h in Headers */,
-				E1E5FBE607B20DD20044D6EF /* QSense.h in Headers */,
 				E1E5FBE807B20DD20044D6EF /* QSExecutor.h in Headers */,
 				E1E5FBEA07B20DD20044D6EF /* QSGlobalSelectionProvider.h in Headers */,
 				7FB8AD4E08E6328D000A65C4 /* QSHandledObjectHandler.h in Headers */,
@@ -3724,12 +3840,14 @@
 				E1E5FAB607B204BF0044D6EF /* NSCursor_InformExtensions.h in Headers */,
 				E1E5FAB807B204BF0044D6EF /* NSData_RangeExtensions.h in Headers */,
 				7FDF341807F7D59E00594789 /* NSDictionary+BLTRExtensions.h in Headers */,
+				4D6E8EC11EA93D61003CD3CE /* FMDatabase.h in Headers */,
 				E1E5FABA07B204BF0044D6EF /* NSEvent+BLTRExtensions.h in Headers */,
 				E1E5FABB07B204BF0044D6EF /* NSException_TraceExtensions.h in Headers */,
 				E1E5FABD07B204BF0044D6EF /* NSFileManager_BLTRExtensions.h in Headers */,
 				E1E5FABF07B204BF0044D6EF /* NSGeometry_BLTRExtensions.h in Headers */,
 				4DFE7DA30E081A3C000B9AA3 /* NSImage+QuickLook.h in Headers */,
 				E1E5FAC107B204BF0044D6EF /* NSImage_BLTRExtensions.h in Headers */,
+				4D6E8EC01EA93D61003CD3CE /* FMDB.h in Headers */,
 				7F93148D07E8B627009B3C06 /* NSIndexSet+Extensions.h in Headers */,
 				7F73BC3908468B8A00D01BDB /* NSMetadataItem+BLTRExtensions.h in Headers */,
 				7F05F1E20852441C00A8EC0C /* NSObject+BLTRExtensions.h in Headers */,
@@ -3740,6 +3858,7 @@
 				E1E5FACB07B204BF0044D6EF /* NSString_BLTRExtensions.h in Headers */,
 				E1E5FACD07B204BF0044D6EF /* NSTableView_BLTRExtensions.h in Headers */,
 				7FF8BB3807B816A20088CEEF /* NSTask+BLTRExtensions.h in Headers */,
+				4D6E8EC51EA93D61003CD3CE /* FMDatabasePool.h in Headers */,
 				E1E5FACF07B204BF0044D6EF /* NSURL_BLTRExtensions.h in Headers */,
 				E1E5FAD107B204BF0044D6EF /* NSUserDefaults_BLTRExtensions.h in Headers */,
 				E1E5FAD307B204BF0044D6EF /* NSView_BLTRExtensions.h in Headers */,
@@ -3748,12 +3867,14 @@
 				2E34EDA1134C9EEE005E66A1 /* NTLocalizedString.h in Headers */,
 				2E34EDA2134C9EEE005E66A1 /* NTViewLocalizer.h in Headers */,
 				CD14B79018D06604000FE86A /* QSThreadSafeMutableDictionary.h in Headers */,
+				4D6E8EC31EA93D61003CD3CE /* FMDatabaseQueue.h in Headers */,
 				2E34EDAA134C9F25005E66A1 /* QSLog.h in Headers */,
 				7FF447EA080479E200316DB6 /* QSLSTools.h in Headers */,
 				4D7B9FA117F2040300A91F64 /* QSMacros.h in Headers */,
 				CDCC201010A4C14B009C4EED /* QSMDPredicate.h in Headers */,
 				7F943F6508033961007EDC31 /* QSUTI.h in Headers */,
 				4D6A663410AB2A2F00898CA4 /* QSTreeController.h in Headers */,
+				4D6E8EC41EA93D61003CD3CE /* FMDatabaseAdditions.h in Headers */,
 				D4E0060F1523951500FDF185 /* NSMetadataQuery+Synchronous.h in Headers */,
 				4D66BBDA1486FCF400351C42 /* CPSPrivate.h in Headers */,
 				4D66BC5A1487027E00351C42 /* NDProcess.h in Headers */,
@@ -3772,12 +3893,15 @@
 				CD803A381C5C3D2D00CF90F3 /* SFLListItem.h in Headers */,
 				4D66BC25148701EA00351C42 /* NSPathControl+NDAlias.h in Headers */,
 				4D66BC27148701EA00351C42 /* NSSavePanel+NDAlias.h in Headers */,
+				4DF329D61EA2C1C9003CD3CE /* QSSense.h in Headers */,
 				4D66BC29148701EA00351C42 /* NSString+NDCarbonUtilities.h in Headers */,
 				D4BDCC1F19E7F8F50080710C /* SUExport.h in Headers */,
 				D4BDCC1C19E7F78F0080710C /* SUStandardVersionComparator.h in Headers */,
 				4D66BC2F1487021500351C42 /* NDResourceFork+PascalStrings.h in Headers */,
 				4D66BC311487021500351C42 /* NDResourceInfo.h in Headers */,
+				4D6E8EC21EA93D61003CD3CE /* FMResultSet.h in Headers */,
 				4D66BC3E1487024500351C42 /* IntegerMath.h in Headers */,
+				4D7DE22F1EA97614003CD3CE /* QSAlertManager.h in Headers */,
 				4D66BC3F1487024500351C42 /* NDComponentInstance.h in Headers */,
 				4D66BC411487024500351C42 /* NDScript.h in Headers */,
 				4D66BC421487024500351C42 /* NDScriptData_Protocols.h in Headers */,
@@ -3893,7 +4017,6 @@
 				66448D9114F42790000FA2E2 /* Resources */,
 				66448D9214F42790000FA2E2 /* Sources */,
 				66448D9314F42790000FA2E2 /* Frameworks */,
-				66448D9414F42790000FA2E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3912,7 +4035,6 @@
 				666E45E9150225EA0034E60A /* Resources */,
 				666E45EA150225EA0034E60A /* Sources */,
 				666E45EB150225EA0034E60A /* Frameworks */,
-				666E45EC150225EA0034E60A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -4058,12 +4180,15 @@
 				E1E5F97307B1FCFC0044D6EF /* Headers */,
 				E1E5F98F07B1FCFC0044D6EF /* Resources */,
 				E1E5F99107B1FCFC0044D6EF /* Sources */,
+				4DFD65C81EA933FC003CD3CE /* Copy Frameworks */,
 				E1E5F9A607B1FCFC0044D6EF /* Frameworks */,
+				4D6E8EB21EA93CFD003CD3CE /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4D8A0B6D10AB24BA006AF163 /* PBXTargetDependency */,
+				4DFD65C71EA93366003CD3CE /* PBXTargetDependency */,
 			);
 			name = "QuickStep Foundation";
 			productName = QSCore;
@@ -4177,6 +4302,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Quicksilver */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4DFD65B11EA93335003CD3CE /* Products */;
+					ProjectRef = 4DFD65B01EA93335003CD3CE /* fmdb.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Quicksilver */,
@@ -4200,6 +4331,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4DFD65BA1EA93336003CD3CE /* fmdb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fmdb;
+			remoteRef = 4DFD65B91EA93336003CD3CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4DFD65BC1EA93336003CD3CE /* libFMDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB.a;
+			remoteRef = 4DFD65BB1EA93336003CD3CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4DFD65BE1EA93336003CD3CE /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = 4DFD65BD1EA93336003CD3CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4DFD65C01EA93336003CD3CE /* libFMDB-IOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFMDB-IOS.a";
+			remoteRef = 4DFD65BF1EA93336003CD3CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4DFD65C21EA93336003CD3CE /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = 4DFD65C11EA93336003CD3CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4DFD65C41EA93336003CD3CE /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = 4DFD65C31EA93336003CD3CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4D002CFE1311465B009040B7 /* Resources */ = {
@@ -4297,6 +4473,7 @@
 				E1186AD606A6D6F700F3EA8E /* QSKindDescriptions.plist in Resources */,
 				E103ED5D06471DBF00447FE0 /* ResourceLocations.plist in Resources */,
 				92DC402D0E25A0C40091BD92 /* Action.png in Resources */,
+				D48FC4FC1FBE89B4009600EB /* QSWebSource.xib in Resources */,
 				92DC402C0E25A0C40091BD92 /* Action_p.png in Resources */,
 				E1B2890506E3DAFA00CACB9E /* AppearanceBack.png in Resources */,
 				E1B2890406E3DAFA00CACB9E /* AppearanceSelection.png in Resources */,
@@ -4478,32 +4655,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		66448D9414F42790000FA2E2 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		666E45EC150225EA0034E60A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		66CAE628153EF9AE0021BC65 /* Adjust Version-String */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4631,6 +4782,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF329D91EA2C5F0003CD3CE /* TestQSSense.m in Sources */,
 				CD661C5419DBD2F3000F3695 /* TestNSApplicationMethods.m in Sources */,
 				66448E1314F42A4E000FA2E2 /* TestPathWildcards.m in Sources */,
 			);
@@ -4712,14 +4864,12 @@
 				E1E5FBD307B20DD20044D6EF /* NSString_Purification.m in Sources */,
 				E1E5FBD507B20DD20044D6EF /* QSAction.m in Sources */,
 				E1E5FBD707B20DD20044D6EF /* QSActionProvider.m in Sources */,
-				E1E5FBD907B20DD20044D6EF /* QSAlertManager.m in Sources */,
 				E1E5FBDB07B20DD20044D6EF /* QSBadgeImage.m in Sources */,
 				4DD2CF370E7B345500BA1128 /* QSBasicObject.m in Sources */,
 				7FB8D6FD07B98B1300062022 /* QSCatalogEntry.m in Sources */,
 				E1E5FBDD07B20DD20044D6EF /* QSCollection.m in Sources */,
 				E1E5FBDF07B20DD20044D6EF /* QSCommand.m in Sources */,
 				E1E5FBE307B20DD20044D6EF /* QSComputerSource.m in Sources */,
-				E1E5FBE707B20DD20044D6EF /* QSense.m in Sources */,
 				E1E5FBE907B20DD20044D6EF /* QSExecutor.m in Sources */,
 				E1E5FBEB07B20DD20044D6EF /* QSGlobalSelectionProvider.m in Sources */,
 				4DF441B50ED9C66700656AD1 /* QSHandledObjectHandler.m in Sources */,
@@ -4770,7 +4920,6 @@
 				D493990E1350078E00B908C6 /* QSDownloads.m in Sources */,
 				CD1B17D9158A573000E4A030 /* VDKQueue.m in Sources */,
 				D413173015DEE5D90021479B /* LaunchAtLoginController.m in Sources */,
-				CD39DE5F16B43FBF0087B09E /* (null) in Sources */,
 				CD65B12A16FA1BD000932A9C /* QSPluginUpdaterWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4837,6 +4986,7 @@
 				7FDF341907F7D59E00594789 /* NSDictionary+BLTRExtensions.m in Sources */,
 				7F3DB4BB0926D1620062EDFD /* NSEvent+BLTRExtensions.m in Sources */,
 				E1E5FABC07B204BF0044D6EF /* NSException_TraceExtensions.m in Sources */,
+				4DF329D71EA2C1D5003CD3CE /* QSSense.m in Sources */,
 				E1E5FABE07B204BF0044D6EF /* NSFileManager_BLTRExtensions.m in Sources */,
 				E1E5FAC007B204BF0044D6EF /* NSGeometry_BLTRExtensions.m in Sources */,
 				4DFE7DA20E081A3B000B9AA3 /* NSImage+QuickLook.m in Sources */,
@@ -4844,6 +4994,7 @@
 				7F93148E07E8B627009B3C06 /* NSIndexSet+Extensions.m in Sources */,
 				7F73BC3A08468B8A00D01BDB /* NSMetadataItem+BLTRExtensions.m in Sources */,
 				7F05F1E30852441C00A8EC0C /* NSObject+BLTRExtensions.m in Sources */,
+				4D7DE2301EA97614003CD3CE /* QSAlertManager.m in Sources */,
 				E1E5FAC407B204BF0044D6EF /* NSObject+ReaperExtensions.m in Sources */,
 				E1E5FAC607B204BF0044D6EF /* NSPasteboard_BLTRExtensions.m in Sources */,
 				E1E5FAC807B204BF0044D6EF /* NSScreen_BLTRExtensions.m in Sources */,
@@ -5004,6 +5155,11 @@
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* Quicksilver */;
 			targetProxy = 4DAAEB9E0E0BBF720088C72D /* PBXContainerItemProxy */;
+		};
+		4DFD65C71EA93366003CD3CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FMDB MacOS";
+			targetProxy = 4DFD65C61EA93366003CD3CE /* PBXContainerItemProxy */;
 		};
 		66448D9C14F42796000FA2E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6026,6 +6182,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "PropertyLists/QSFoundation-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					QuickLook,
@@ -6045,6 +6202,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "PropertyLists/QSFoundation-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					QuickLook,

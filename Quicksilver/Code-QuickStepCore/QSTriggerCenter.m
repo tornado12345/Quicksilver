@@ -46,12 +46,12 @@
 		/* tiennou: Those look unused. If they aren't, change them to extern NSStrings */
 		[nc addObserver:self
 			   selector:@selector(interfaceActivated)
-				   name:@"InterfaceActivated"
+				   name:QSInterfaceActivatedNotification
 				 object:nil];
 
 		[nc addObserver:self
 			   selector:@selector(interfaceDeactivated)
-				   name:@"InterfaceDeactivated"
+				   name:QSInterfaceDeactivatedNotification
 				 object:nil];
 	}
 	return self;
@@ -60,8 +60,8 @@
 - (void)dealloc {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc removeObserver:self name:QSActiveApplicationChanged object:nil];
-	[nc removeObserver:self name:@"InterfaceActivated" object:nil];
-	[nc removeObserver:self name:@"InterfaceDeactivated" object:nil];
+	[nc removeObserver:self name:QSInterfaceActivatedNotification object:nil];
+	[nc removeObserver:self name:QSInterfaceDeactivatedNotification object:nil];
 	triggers = nil;
 	triggersDict = nil;
 }
@@ -213,15 +213,15 @@
 #endif
 		[cleanedTriggerArray addObject:rep];
 	}
-	
-    NSString *errorStr;
+
     NSError *error;
     NSDictionary * triggerDict = [[NSDictionary alloc] initWithObjectsAndKeys:cleanedTriggerArray, @"triggers", nil];
-    NSData *data = [NSPropertyListSerialization dataFromPropertyList:triggerDict
-                                                              format:NSPropertyListXMLFormat_v1_0
-                                                    errorDescription:&errorStr];
-    if(data == nil || errorStr) {
-        NSLog(@"Failed converting triggers: %@", errorStr);
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:triggerDict
+															  format:NSPropertyListXMLFormat_v1_0
+															 options:0
+															   error:&error];
+    if(data == nil) {
+        NSLog(@"Failed converting triggers: %@", error);
         return;
     }
     

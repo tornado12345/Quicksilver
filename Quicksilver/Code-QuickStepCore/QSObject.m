@@ -44,17 +44,16 @@ NSSize QSMaxIconSize;
         tempChildSet = [childLoadedSet copy];
     }
 
-    [tempIconSet enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(QSObject *obj, BOOL *stop) {
-        if (obj->lastAccess && obj->lastAccess < (tempLastAccess - interval)) {
-            [obj unloadIcon];
-        }
-    }];
-
-    [tempChildSet enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(QSObject *obj, BOOL *stop) {
-        if (obj->lastAccess && obj->lastAccess < (tempLastAccess - interval)) {
-            [obj unloadChildren];
-        }
-    }];
+	for (QSObject *obj in tempIconSet) {
+		if (obj->lastAccess && obj->lastAccess < (tempLastAccess - interval)) {
+			[obj unloadIcon];
+		}
+	}
+	for (QSObject *obj in tempChildSet) {
+		if (obj->lastAccess && obj->lastAccess < (tempLastAccess - interval)) {
+			[obj unloadChildren];
+		}
+	}
 }
 
 + (void)interfaceChanged {
@@ -68,6 +67,7 @@ NSSize QSMaxIconSize;
 
 		data = [NSMutableDictionary dictionaryWithCapacity:0];
 		meta = [NSMutableDictionary dictionaryWithCapacity:0];
+		cache = [QSThreadSafeMutableDictionary dictionaryWithCapacity:0];
 		name = nil;
 		label = nil;
 		icon = nil;
@@ -80,21 +80,21 @@ NSSize QSMaxIconSize;
 
 - (NSUInteger)hash
 {
-	NSString *ident = [self identifier];
-	if (!ident) {
-		ident = [self stringValue];
-	}
-	return [ident hash];
+	return identifier.hash ^ data.hash;
 }
 
-- (BOOL)isEqual:(id)anObject {
-  if (self != anObject && [anObject isKindOfClass:[QSRankedObject class]]) {
-    anObject = [anObject object];
-  }
+- (BOOL)isEqual:(QSObject *)anObject {
+	if (!anObject) return NO;
+	if (self != anObject && [anObject isKindOfClass:[QSRankedObject class]]) {
+		anObject = [(QSRankedObject *)anObject object];
+	}
 	if (self == anObject) return YES;
-	if (([self identifier] || [anObject identifier]) && ![[self identifier] isEqualToString:[anObject identifier]]) return NO;
+	NSString *otherIdentifier = anObject->identifier;
+	if ((identifier || otherIdentifier) && [identifier isEqualToString:otherIdentifier]) {
+		return YES;
+	}
 	if ([self count] > 1) {
-		if ([self count] != [(QSObject *)anObject count]) {
+		if ([self count] != [anObject count]) {
 			return NO;
 		}
 		NSSet *myObjects = [NSSet setWithArray:[self splitObjects]];
@@ -103,8 +103,8 @@ NSSize QSMaxIconSize;
 			return NO;
 		}
 	} else {
-		for(NSString *key in data) {
-			if (![[data objectForKey:key] isEqual:[anObject objectForType:key]]) return NO;
+		if (![data isEqualToDictionary:anObject->data]) {
+			return NO;
 		}
 	}
 	return YES;
@@ -397,14 +397,11 @@ NSSize QSMaxIconSize;
 }
 
 - (id)objectForType:(id)aKey {
-    aKey = QSUTIForAnyTypeString(aKey);
-	//	if ([aKey isEqualToString:NSFilenamesPboardType]) return [self arrayForType:QSFilePathType];
-	//	if ([aKey isEqualToString:NSStringPboardType]) return [self objectForType:QSTextType];
-	//	if ([aKey isEqualToString:NSURLPboardType]) return [self objectForType:QSURLType];
 	id object = [self _safeObjectForType:aKey];
 	if ([object isKindOfClass:[NSArray class]]) {
 		if ([(NSArray *) object count] == 1) return [object lastObject];
 	} else {
+		aKey = QSUTIForAnyTypeString(aKey);
         if ([aKey isEqualToString:QSTextType] && [object isKindOfClass:[NSData class]]) {
             object = [[NSString alloc] initWithData:object encoding:NSUTF8StringEncoding];
         }
@@ -445,15 +442,13 @@ NSSize QSMaxIconSize;
     if (!aKey) {
         return;
     }
-    @synchronized([self cache]) {
-        if (object) {
-            if (object != [[self cache] objectForKey:aKey]) {
-                [[self cache] setObject:object forKey:aKey];
-            }
-        } else {
-            [[self cache] removeObjectForKey:aKey];
-        }
-    }
+	if (object) {
+		if (object != [[self cache] objectForKey:aKey]) {
+			[[self cache] setObject:object forKey:aKey];
+		}
+	} else {
+		[[self cache] removeObjectForKey:aKey];
+	}
 }
 
 - (id)objectForMeta:(id)aKey {
@@ -474,12 +469,11 @@ NSSize QSMaxIconSize;
 }
 
 - (NSMutableDictionary *)cache {
-	if (!cache) [self setCache:[NSMutableDictionary dictionaryWithCapacity:1]];
 	return cache;
 }
 - (void)setCache:(NSMutableDictionary *)aCache {
 	if (cache != aCache) {
-		cache = aCache;
+		cache = [QSThreadSafeMutableDictionary dictionaryWithDictionary:aCache];
 	}
 }
 
@@ -764,16 +758,22 @@ NSSize QSMaxIconSize;
 }
 
 - (NSString *)primaryType {
+	if (primaryType) {
+		return primaryType;
+	}
     if (!primaryType)
         primaryType = [meta objectForKey:kQSObjectPrimaryType];
 	if (!primaryType)
 		primaryType = [self guessPrimaryType];
-    return QSUTIForAnyTypeString(primaryType);
+	if (primaryType)
+		[self setPrimaryType:primaryType];
+	return primaryType;
 }
 - (void)setPrimaryType:(NSString *)newPrimaryType {
     if (primaryType != newPrimaryType) {
         primaryType = newPrimaryType;
     }
+	newPrimaryType = QSUTIForAnyTypeString(newPrimaryType);
     [self setObject:newPrimaryType forMeta:kQSObjectPrimaryType];
 }
 
@@ -981,7 +981,9 @@ NSSize QSMaxIconSize;
 		[icon setCacheMode:NSImageCacheNever];
         if (iconChange) {
             // icon is being replaced, not set - notify UI
-            [[NSNotificationCenter defaultCenter] postNotificationName:QSObjectIconModified object:self];
+			QSGCDMainAsync(^{
+            	[[NSNotificationCenter defaultCenter] postNotificationName:QSObjectIconModified object:self];
+			});
         }
 	}
 }
