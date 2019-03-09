@@ -1,3 +1,29 @@
+## Changes - 1.6.1 (4026) ##
+
+### Fixed ###
+
+  * Touch Bar code won’t be called on older versions of macOS (#2460, #2463)
+  * Additional tweaks for the default string ranker (#2481)
+
+### Development ###
+
+  * Update internal version of Python-Markdown to 2.6.11 (#2480)
+
+## Changes - 1.6.0 (4025) 2018-09-19 ##
+
+### New ###
+
+  * Touch Bar support (#2366)
+  * Provide descriptions when permission to access Contacts, interact with other applications, etc. is requested (#2446)
+
+### Changed ###
+
+  * Improvements to the disk image used during installation (#2451)
+
+### Fixed ###
+
+  * Small fixes for the default string ranker (#2450, #2452)
+
 ## Changes - 1.5.9 (4024) 2018-03-12 ##
 
 ### Fixed ###
