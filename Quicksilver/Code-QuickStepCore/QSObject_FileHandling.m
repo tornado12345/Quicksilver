@@ -286,7 +286,7 @@ NSArray *QSGetRecentDocumentsForBundle(NSString *bundleIdentifier) {
                 [previewImage lockFocus];
                 NSImage *aliasImage = [QSResourceManager imageNamed:@"AliasBadgeIcon"];
                 aliasImage = [aliasImage duplicateOfSize:QSSizeMax];
-                [aliasImage drawAtPoint:NSMakePoint(0, 0) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+                [aliasImage drawAtPoint:NSMakePoint(0, 0) fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
                 [previewImage unlockFocus];
             }
             theImage = previewImage;
@@ -583,7 +583,7 @@ NSArray *QSGetRecentDocumentsForBundle(NSString *bundleIdentifier) {
 
 - (NSString *)singleFilePath {
 	NSString *path = [self objectForType:QSFilePathType];
-	if (![path isKindOfClass:[NSString class]]) {
+	if (path && ![path isKindOfClass:[NSString class]]) {
 		NSLog(@"unexpected object for file path: %@, object: %@", path, self);
 		return nil;
 	}
@@ -591,11 +591,7 @@ NSArray *QSGetRecentDocumentsForBundle(NSString *bundleIdentifier) {
 }
 
 - (NSString *)validSingleFilePath {
-	NSString *path = [self objectForType:QSFilePathType];
-	if (![path isKindOfClass:[NSString class]]) {
-		NSLog(@"unexpected object for file path: %@, object: %@", path, self);
-		return nil;
-	}
+	NSString *path = [self singleFilePath];
 	if (path && [[NSFileManager defaultManager] fileExistsAtPath:path])
 		return path;
 	return nil;

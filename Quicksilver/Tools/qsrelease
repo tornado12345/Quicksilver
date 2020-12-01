@@ -31,7 +31,13 @@ if [[ $? == 0 ]]; then
   chmod 644 Quicksilver.app/Contents/Info.plist
 
   ## Sign for Gatekeeper
-  codesign -s "Developer ID Application" --deep Quicksilver.app
+  codesign -s "Developer ID Application" Quicksilver.app/Contents/Frameworks/*.framework
+  codesign -s "Developer ID Application" Quicksilver.app/Contents/PlugIns/*.qsplugin
+  codesign -s "Developer ID Application" Quicksilver.app/Contents/Resources/QSDroplet.app
+  codesign -s "Developer ID Application" Quicksilver.app/Contents/Library/Automator/*.action
+  codesign -s "Developer ID Application" Quicksilver.app/Contents/Resources/*.plist
+  codesign -s "Developer ID Application" Quicksilver.app/Contents/Info.plist
+  codesign -s "Developer ID Application" Quicksilver.app
 
   ## Package it in a disk image
   mkdir $DMG_TEMP
@@ -51,7 +57,7 @@ if [[ $? == 0 ]]; then
   open $BUILT_PRODUCTS_DIR
 
   ## Verify app and DMG signing
-  spctl -av Quicksilver.app
+  codesign --verify --deep --strict --verbose=1 Quicksilver.app
   spctl -avt open --context context:primary-signature "Quicksilver $QS_INFO_VERSION.dmg"
 fi
 

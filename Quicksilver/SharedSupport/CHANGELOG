@@ -1,15 +1,45 @@
-## Changes - 1.6.1 (4026) ##
+## Changes - 1.6.2 (4027) ##
+
+### Fixed ###
+
+  * Removed a special character from the `Info.plist` to help with packaging (#2527, #2528)
+
+## Changes - 1.6.1 (4026) 2020-06-25 ##
+
+### New ###
+
+  * A new preference has been added to Extras that controls the number of items kept in Quicksilver’s history (#2490)
+  * Index `/System/Applications` by default (#2510)
+
+### Changed ###
+
+  * Several in-application links have been updated (#2486)
+  * Update the internal list of top-level domains (#2493)
 
 ### Fixed ###
 
   * Touch Bar code won’t be called on older versions of macOS (#2460, #2463)
   * Additional tweaks for the default string ranker (#2481)
+  * Small fixes to eliminate some warnings (#2477)
+  * Updated code for alerts (#2477)
+  * Include the license with the code (#2498)
+  * Random trigger delays (#2482, #2500)
+  * Fix some crashes under Catalina (#2503, #2497)
+  * Rescan Recent Applications and Recent Documents when changed (#2451, #2515)
+  * Fix a crash when using Large Type (#2511, #2521)
 
 ### Development ###
 
   * Update internal version of Python-Markdown to 2.6.11 (#2480)
+  * Change the encoding for Thai localization files (#2487)
+  * Add a `cachedProxyTarget` method to find out what a proxy object last pointed to without resolving it again (#2489)
+  * Start the transition to `NSRunningApplication` (#2500)
+  * Cleaned up some clipboard code (#2499)
+  * Set the SDK to macOS 10.13 for now. You can copy or symlink it from Xcode 9.
 
 ## Changes - 1.6.0 (4025) 2018-09-19 ##
+
+This release requires macOS 10.12.
 
 ### New ###
 
@@ -138,7 +168,7 @@
 
 ## Changes - 1.5.1 (401C) 2016-12-24 ##
 
-This release requires 10.10.
+This release requires macOS 10.10.
 
 ### New ###
 

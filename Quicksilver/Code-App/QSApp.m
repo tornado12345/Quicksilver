@@ -46,7 +46,7 @@ BOOL QSApplicationCompletedLaunch = NO;
         QSIntValueTransformer *intValueIsTwo = [[QSIntValueTransformer alloc] initWithInteger:2];
         [NSValueTransformer setValueTransformer:intValueIsTwo forName:@"IntegerValueIsTwo"];
 		
-        [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/QSDefaults.plist"]]];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Resources/QSDefaults.plist"]]];
         done = YES;
     }
 }
@@ -64,7 +64,9 @@ BOOL QSApplicationCompletedLaunch = NO;
 	return self;
 }
 
-- (BOOL)completedLaunch { return QSApplicationCompletedLaunch;  }
+- (BOOL)completedLaunch { return QSApplicationCompletedLaunch; }
+
++ (void)setCompletedLaunch:(BOOL)flag { QSApplicationCompletedLaunch = flag; }
 
 - (BOOL)_handleKeyEquivalent:(NSEvent *)event {
 	if ([[self globalKeyEquivalentTarget] performKeyEquivalent:event])
@@ -165,15 +167,6 @@ BOOL QSApplicationCompletedLaunch = NO;
 - (BOOL)isPrerelease {
 	NSInteger releaseLevel = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"QSReleaseStatus"] integerValue];
 	return releaseLevel > 0;
-}
-
-- (void)qs_sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    QSModalSessionBlock completionHandler = (__bridge_transfer QSModalSessionBlock)contextInfo;
-    completionHandler(returnCode);
-}
-
-- (void)qs_beginSheet:(NSWindow *)sheet modalForWindow:(NSWindow *)docWindow completionHandler:(QSModalSessionBlock)completionHandler {
-    [self beginSheet:sheet modalForWindow:docWindow modalDelegate:self didEndSelector:@selector(qs_sheetDidEnd:returnCode:contextInfo:) contextInfo:(__bridge_retained void *)([completionHandler copy])];
 }
 
 @end

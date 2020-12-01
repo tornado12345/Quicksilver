@@ -11,7 +11,6 @@
 #import "QSResourceManager.h"
 #import "QSMacros.h"
 #import "QSApp.h"
-#import "QSHelp.h"
 #import "QSUpdateController.h"
 #import "QSNotifications.h"
 #import "QSController.h"
@@ -505,7 +504,6 @@
 }
 
 - (BOOL)tableView:(NSTableView *)view acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-	[view registerForDraggedTypes:nil];
 	NSArray *data = [[info draggingPasteboard] propertyListForType:QSTableRowsType];
 	NSIndexSet *indexes = [NSIndexSet indexSetFromArray:data];
     

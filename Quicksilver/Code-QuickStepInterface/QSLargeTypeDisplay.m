@@ -13,8 +13,6 @@
 
 #define EDGEINSET 16
 
-static NSMutableArray *_largeTypeWindows;
-
 #pragma mark QSLargeTypeDisplay
 
 void QSShowLargeType(NSString *aString) {
@@ -85,20 +83,13 @@ void QSShowLargeType(NSString *aString) {
 	windowRect = NSInsetRect(windowRect, -EDGEINSET, -EDGEINSET);
 	windowRect = NSIntegralRect(windowRect);
     
-    if (!_largeTypeWindows) {
-        _largeTypeWindows = [[NSMutableArray alloc] init];
-    }
-    
 	QSVanishingWindow *largeTypeWindow = [[QSVanishingWindow alloc] initWithContentRect:windowRect styleMask:NSBorderlessWindowMask | NSNonactivatingPanelMask backing:NSBackingStoreBuffered defer:NO];
-    [_largeTypeWindows addObject:largeTypeWindow];
 	[largeTypeWindow setIgnoresMouseEvents:NO];
 	[largeTypeWindow setFrame:centerRectInRect(windowRect, screenRect) display:YES];
 	[largeTypeWindow setBackgroundColor: [NSColor clearColor]];
 	[largeTypeWindow setOpaque:NO];
 	[largeTypeWindow setLevel:NSFloatingWindowLevel];
 	[largeTypeWindow setHidesOnDeactivate:NO];
-    [largeTypeWindow setReleasedWhenClosed:YES];
-	//	[largeTypeWindow setNextResponder:self];
 
 	QSBezelBackgroundView *content = [[NSClassFromString(@"QSBezelBackgroundView") alloc] initWithFrame:NSZeroRect];
 	[content setRadius:32];
@@ -121,12 +112,6 @@ void QSShowLargeType(NSString *aString) {
 #pragma mark QSVainishingWindow
 
 @implementation QSVanishingWindow
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
-	if (self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag]) {
-		[self setReleasedWhenClosed:YES];
-	}
-	return self;
-}
 
 - (IBAction)copy:(id)sender {
 	NSPasteboard *pb = [NSPasteboard generalPasteboard];
@@ -139,13 +124,6 @@ void QSShowLargeType(NSString *aString) {
 - (void)keyDown:(NSEvent *)theEvent {
 	[self setAlphaValue:0 fadeTime:0.333];
 	[self close];
-}
-
-- (void)dealloc {
-    [_largeTypeWindows removeObject:self];
-    if ([_largeTypeWindows count] == 0) {
-        _largeTypeWindows = nil;
-    }
 }
 
 - (void)resignKeyWindow {

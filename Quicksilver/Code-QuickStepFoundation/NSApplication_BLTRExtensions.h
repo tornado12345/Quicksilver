@@ -143,4 +143,18 @@ typedef NSInteger QSApplicationLaunchStatusFlags;
  @returns YES, if 10.14+. NO otherwise
  */
 + (BOOL)isMojave;
+
+/**
+ Checks, if system is at least macOS 10.15 (Catalina)
+
+ @returns YES, if 10.15+. NO otherwise
+ */
++ (BOOL)isCatalina;
+
+/**
+ Checks, if system is at least macOS 11 (Big Sur)
+
+ @returns YES, if 11+. NO otherwise
+ */
++ (BOOL)isBigSur;
 @end

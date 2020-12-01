@@ -75,8 +75,19 @@
 @implementation NSApplication (Relaunching)
 
 - (void)requestRelaunch:(id)sender {
-    if (NSRunAlertPanel(@"Relaunch required", @"Quicksilver needs to be relaunched for some changes to take effect", @"Relaunch", @"Later", nil))
-		[self relaunch:self];
+	[[QSAlertManager defaultManager] beginAlertWithTitle:NSLocalizedString(@"Relaunch required", "Request relaunch alert title")
+											   message:NSLocalizedString(@"Quicksilver needs to be relaunched for some changes to take effect", @"Request relaunch alert message")
+											   buttons:@[
+														 NSLocalizedString(@"Relaunch", @"Request relaunch alert accept button"),
+														 NSLocalizedString(@"Later", @"Request relaunch alert cancel button"),
+														 ]
+												 style:NSWarningAlertStyle
+										  onWindow:nil
+									   completionHandler:^(QSAlertResponse response) {
+										   if (response == QSAlertResponseOK) {
+											   [self relaunch:self];
+										   }
+									   }];
 }
 
 // Use a method taken from Sparkle that deals with: Authentication, Quarantine and more
@@ -171,42 +182,50 @@
 
 
 + (BOOL)isLeopard {
-	return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 5);
+	return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 5);
 }
 
 + (BOOL)isSnowLeopard {
-    return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 6);
+    return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 6);
 }
 
 + (BOOL)isLion {
-    return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 7);
+    return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 7);
 }
 
 + (BOOL)isMountainLion {
-    return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 8);
+    return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 8);
 }
 
-+ (BOOL)isMavericks {
-    return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 9);
++ (BOOL) isMavericks {
+    return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 9);
 }
 
 + (BOOL)isYosemite {
-    return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 10);
+    return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 10);
 }
 
 + (BOOL)isElCapitan {
-    return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 11);
+    return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 11);
 }
 
 + (BOOL)isSierra {
-	return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 12);
+	return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 12);
 }
 
 + (BOOL)isHighSierra {
-	return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 13);
+	return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 13);
 }
 
 + (BOOL)isMojave {
-	return ([NSApplication macOSXMajorVersion] >= 10 && [NSApplication macOSXMinorVersion] >= 14);
+	return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 14);
+}
+
++ (BOOL)isCatalina {
+	return [NSApplication macOSXMajorVersion] > 10 || ([NSApplication macOSXMajorVersion] == 10 && [NSApplication macOSXMinorVersion] >= 15);
+}
+
++ (BOOL)isBigSur {
+	return [NSApplication macOSXMajorVersion] > 10;
 }
 @end

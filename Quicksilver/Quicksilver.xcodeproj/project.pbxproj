@@ -308,8 +308,6 @@
 		7FE2EE8B09FF0BD50046DBBF /* QSTitleToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FE2EE8909FF0BD50046DBBF /* QSTitleToolbarItem.h */; };
 		7FE2EE8C09FF0BD50046DBBF /* QSTitleToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE2EE8A09FF0BD50046DBBF /* QSTitleToolbarItem.m */; };
 		7FE8940E085D021C0016C421 /* QSProcessObjectSource.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FE8940D085D021B0016C421 /* QSProcessObjectSource.xib */; };
-		7FEE6B2907D2A93100847B74 /* QSHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FEE6B2707D2A93100847B74 /* QSHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7FEE6B2A07D2A93100847B74 /* QSHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEE6B2807D2A93100847B74 /* QSHelp.m */; };
 		7FF447EA080479E200316DB6 /* QSLSTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF447E8080479E200316DB6 /* QSLSTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7FF447EB080479E200316DB6 /* QSLSTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF447E9080479E200316DB6 /* QSLSTools.m */; };
 		7FF590210804398F0031368C /* QSDirectoryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5901F0804398F0031368C /* QSDirectoryParser.m */; };
@@ -1085,8 +1083,8 @@
 		E1C3BE5106EA0AC500B848D6 /* Copy Plists */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Contents;
-			dstSubfolderSpec = 1;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
 				7F975A6807FCA779007FC20F /* QSDefaults.plist in Copy Plists */,
 				E1C3BE5306EA0AE400B848D6 /* QSRegistration.plist in Copy Plists */,
@@ -1450,8 +1448,6 @@
 		7FE2EE8909FF0BD50046DBBF /* QSTitleToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSTitleToolbarItem.h; sourceTree = "<group>"; usesTabs = 1; };
 		7FE2EE8A09FF0BD50046DBBF /* QSTitleToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSTitleToolbarItem.m; sourceTree = "<group>"; usesTabs = 1; };
 		7FE8940D085D021B0016C421 /* QSProcessObjectSource.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QSProcessObjectSource.xib; sourceTree = "<group>"; };
-		7FEE6B2707D2A93100847B74 /* QSHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSHelp.h; sourceTree = "<group>"; usesTabs = 1; };
-		7FEE6B2807D2A93100847B74 /* QSHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSHelp.m; sourceTree = "<group>"; usesTabs = 1; };
 		7FF447E8080479E200316DB6 /* QSLSTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSLSTools.h; sourceTree = "<group>"; usesTabs = 1; };
 		7FF447E9080479E200316DB6 /* QSLSTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSLSTools.m; sourceTree = "<group>"; usesTabs = 1; };
 		7FF5901E0804398F0031368C /* QSDirectoryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSDirectoryParser.h; sourceTree = "<group>"; };
@@ -1560,7 +1556,7 @@
 		CD2FFC0116792D850028FA8A /* nl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/QSMainMenuPrefPane.strings; sourceTree = "<group>"; };
 		CD2FFC0216792D860028FA8A /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/QSMainMenuPrefPane.strings; sourceTree = "<group>"; };
 		CD2FFC0316792D8A0028FA8A /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CD2FFC0416792D8B0028FA8A /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CD2FFC0416792D8B0028FA8A /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CD2FFC0716792D9A0028FA8A /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/About.strings; sourceTree = "<group>"; };
 		CD2FFC0916792DA10028FA8A /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/QSApplicationPrefPane.strings; sourceTree = "<group>"; };
 		CD2FFC0A16792DA90028FA8A /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/QSApplicationPrefPane.strings"; sourceTree = "<group>"; };
@@ -1731,12 +1727,12 @@
 		CD4B1BA617C258B900F2C5A7 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = id; path = id.lproj/QSParser.name.strings; sourceTree = "<group>"; };
 		CD4B1BA717C258B900F2C5A7 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = id; path = id.lproj/QSAction.commandFormat.strings; sourceTree = "<group>"; };
 		CD4B1BA817C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSAdvancedPrefPane.strings; sourceTree = "<group>"; };
-		CD4B1BA917C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSActionsPrefPane.strings; sourceTree = "<group>"; };
-		CD4B1BAA17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSCatalog.strings; sourceTree = "<group>"; };
-		CD4B1BAB17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSHelpersPrefPane.strings; sourceTree = "<group>"; };
+		CD4B1BA917C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSActionsPrefPane.strings; sourceTree = "<group>"; };
+		CD4B1BAA17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSCatalog.strings; sourceTree = "<group>"; };
+		CD4B1BAB17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSHelpersPrefPane.strings; sourceTree = "<group>"; };
 		CD4B1BAC17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSPlugInsPrefPane.strings; sourceTree = "<group>"; };
 		CD4B1BAD17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSTriggersPrefPane.strings; sourceTree = "<group>"; };
-		CD4B1BAE17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSMainMenuPrefPane.strings; sourceTree = "<group>"; };
+		CD4B1BAE17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSMainMenuPrefPane.strings; sourceTree = "<group>"; };
 		CD4B1BAF17C259BE00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD4B1BB217C259BF00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/About.strings; sourceTree = "<group>"; };
 		CD4B1BB317C259BF00F2C5A7 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/QSApplicationPrefPane.strings; sourceTree = "<group>"; };
@@ -3435,8 +3431,6 @@
 				E1E5FB7E07B20DD10044D6EF /* QSGlobalSelectionProvider.m */,
 				7FB8AD4C08E6328D000A65C4 /* QSHandledObjectHandler.h */,
 				7FB8AD4D08E6328D000A65C4 /* QSHandledObjectHandler.m */,
-				7FEE6B2707D2A93100847B74 /* QSHelp.h */,
-				7FEE6B2807D2A93100847B74 /* QSHelp.m */,
 				7F4D6870083AB7DE00541FEB /* QSHistoryController.h */,
 				7F4D6871083AB7DE00541FEB /* QSHistoryController.m */,
 				E1E5FB7F07B20DD10044D6EF /* QSIconLoader.h */,
@@ -3723,7 +3717,6 @@
 				E1E5FBE807B20DD20044D6EF /* QSExecutor.h in Headers */,
 				E1E5FBEA07B20DD20044D6EF /* QSGlobalSelectionProvider.h in Headers */,
 				7FB8AD4E08E6328D000A65C4 /* QSHandledObjectHandler.h in Headers */,
-				7FEE6B2907D2A93100847B74 /* QSHelp.h in Headers */,
 				7F4D6872083AB7DE00541FEB /* QSHistoryController.h in Headers */,
 				E1E5FBEC07B20DD20044D6EF /* QSIconLoader.h in Headers */,
 				E1E5FBF007B20DD20044D6EF /* QSInterfaceMediator.h in Headers */,
@@ -4877,7 +4870,6 @@
 				E1E5FBE907B20DD20044D6EF /* QSExecutor.m in Sources */,
 				E1E5FBEB07B20DD20044D6EF /* QSGlobalSelectionProvider.m in Sources */,
 				4DF441B50ED9C66700656AD1 /* QSHandledObjectHandler.m in Sources */,
-				7FEE6B2A07D2A93100847B74 /* QSHelp.m in Sources */,
 				7F4D6873083AB7DE00541FEB /* QSHistoryController.m in Sources */,
 				E1E5FBED07B20DD20044D6EF /* QSIconLoader.m in Sources */,
 				E1E5FBF107B20DD20044D6EF /* QSInterfaceMediator.m in Sources */,
@@ -6007,7 +5999,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/Bezel/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6017,7 +6008,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/Bezel/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6027,7 +6017,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/Finder/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6037,7 +6026,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/Finder/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6047,7 +6035,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/PrimerInterface/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6057,7 +6044,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/PrimerInterface/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6067,7 +6053,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/QSHotKeyPlugIn/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6077,7 +6062,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/QSHotKeyPlugIn/Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6094,7 +6078,6 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				INFOPLIST_FILE = "PropertyLists/QSFoundationTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -6113,7 +6096,6 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				INFOPLIST_FILE = "PropertyLists/QSFoundationTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -6134,7 +6116,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "PropertyLists/QSCoreTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -6154,7 +6135,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "PropertyLists/QSCoreTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -6192,7 +6172,6 @@
 					QuickLook,
 				);
 				PRODUCT_NAME = QSFoundation;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6212,7 +6191,6 @@
 					QuickLook,
 				);
 				PRODUCT_NAME = QSFoundation;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6255,7 +6233,6 @@
 				INFOPLIST_FILE = "PropertyLists/QSEffects-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = QSEffects;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6270,7 +6247,6 @@
 				INFOPLIST_FILE = "PropertyLists/QSEffects-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = QSEffects;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6324,7 +6300,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/QSCorePlugIn/QSCorePlugIn-Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -6334,7 +6309,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PlugIns-Main/QSCorePlugIn/QSCorePlugIn-Info.plist";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -6345,7 +6319,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PropertyLists/Quicksilver-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6357,7 +6330,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = "PropertyLists/Quicksilver-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -6403,6 +6375,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "QSDroplet/QSDroplet-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacktree.Quicksilver.droplet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6414,6 +6387,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "QSDroplet/QSDroplet-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blacktree.Quicksilver.droplet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6452,7 +6426,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Core Support Tests/Core Support Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -6487,7 +6460,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Core Support Tests/Core Support Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
